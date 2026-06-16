@@ -1,0 +1,2392 @@
+/* ============================================================
+   Da.Signa — main.css
+   Единый стиль-лист. Порядок каскада: tokens → typography →
+   global → компоненты. Не используйте инлайн-стили.
+   ============================================================ */
+
+
+/* ===== src/styles/tokens.css ===== */
+/* ============================================================
+   Da.Signa — Design Tokens
+   Extracted from Figma "Da Signa" (node 134:3458)
+   ============================================================ */
+
+:root {
+  /* ---- Color: brand ---- */
+  --color-accent: #e36000;
+  --color-accent-hover: #c85400;
+  --color-accent-soft: rgba(227, 96, 0, 0.7);
+  --color-accent-tint: #fdece0;
+
+  /* ---- Color: ink / text ---- */
+  --color-heading: #2f2f2f;
+  --color-ink: #1d1d1b;
+  --color-body: #43474e;
+  --color-muted: #71717a;
+
+  /* ---- Color: surfaces ---- */
+  --color-bg: #fff9f4;
+  --color-surface: #ffffff;
+  --color-surface-cream: #fff3e9;
+  --color-dark: #1d1d1b;
+  --color-dark-2: #2a2724;
+
+  /* ---- Color: lines ---- */
+  --color-border: #ddddde;
+  --color-border-strong: #c9c9cb;
+
+  /* ---- Color: misc ---- */
+  --color-whatsapp: #25d366;
+
+  /* ---- Typography ---- */
+  --font-sans: "Jost", "Futura PT", "Century Gothic", "Trebuchet MS",
+    system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* fluid type scale (mobile -> desktop) */
+  --text-hero: clamp(2rem, 1.2rem + 3.6vw, 3rem); /* 32 -> 48 */
+  --text-h2: clamp(1.75rem, 1.1rem + 2.9vw, 3rem); /* 28 -> 48 */
+  --text-h3: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem); /* 24 -> 36 */
+  --text-h4: clamp(1.25rem, 1.05rem + 0.9vw, 1.5rem); /* 20 -> 24 */
+  --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); /* 17 -> 20 */
+  --text-base: 1rem; /* 16 */
+  --text-sm: 0.875rem; /* 14 */
+  --text-xs: 0.75rem; /* 12 */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+
+  /* ---- Spacing ---- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-section: clamp(3.5rem, 2.5rem + 5vw, 7.5rem);
+
+  /* ---- Layout ---- */
+  --container-max: 1400px;
+  --container-pad: clamp(1rem, 0.4rem + 3vw, 2.5rem);
+
+  /* ---- Radius ---- */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+
+  /* ---- Shadow ---- */
+  --shadow-sm: 0 2px 8px rgba(29, 29, 27, 0.06);
+  --shadow-md: 0 12px 30px rgba(29, 29, 27, 0.1);
+  --shadow-lg: 0 24px 60px rgba(29, 29, 27, 0.14);
+
+  /* ---- Motion ---- */
+  --duration-fast: 150ms;
+  --duration-normal: 280ms;
+  --duration-slow: 600ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* ---- Z-index ---- */
+  --z-header: 100;
+  --z-menu: 200;
+  --z-widget: 300;
+  --z-modal: 400;
+}
+
+/* ===== src/styles/typography.css ===== */
+/* ============================================================
+   Da.Signa — Typography
+   Primary face in the mockup is "Futura PT" (commercial, Adobe
+   Fonts). It is substituted here with "Jost" — a free geometric
+   grotesque modeled on Futura — loaded from Google Fonts in the
+   document <head>.
+
+   To use the licensed Futura PT instead, drop the web-font files
+   into /assets/fonts and uncomment the @font-face blocks below;
+   it is already first in the --font-sans fallback stack.
+   ============================================================ */
+
+/*
+@font-face {
+  font-family: "Futura PT";
+  src: url("/assets/fonts/FuturaPT-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Futura PT";
+  src: url("/assets/fonts/FuturaPT-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Futura PT";
+  src: url("/assets/fonts/FuturaPT-Demi.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-hero);
+  line-height: var(--leading-tight);
+}
+h2 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-tight);
+}
+h3 {
+  font-size: var(--text-h3);
+}
+h4 {
+  font-size: var(--text-h4);
+}
+
+p {
+  line-height: var(--leading-normal);
+  color: var(--color-body);
+}
+
+small {
+  font-size: var(--text-sm);
+}
+
+.eyebrow {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+
+.section-title {
+  font-size: var(--text-h2);
+  line-height: 1; /* Figma: 100% */
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+/* ===== src/styles/global.css ===== */
+/* ============================================================
+   Da.Signa — Global base: reset, layout, buttons, utilities
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-body);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- Layout helpers ---- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section--tight {
+  padding-block: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* Figma: заголовок и интро выровнены по верху */
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.section-head__intro {
+  max-width: 648px; /* Figma: блок интро 648px, 2 строки, по правому краю */
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+  text-align: right;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  --_bg: var(--color-accent);
+  --_fg: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 0.875rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  will-change: transform;
+}
+
+.btn:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn .btn__icon {
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.btn:hover .btn__icon {
+  transform: translate(3px, -3px);
+}
+
+.btn--ghost {
+  --_bg: transparent;
+  --_fg: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* текст-ссылка со стрелкой и нижней границей (Figma: «Перейти в Контакты») */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  transition: gap var(--duration-fast) var(--ease-out);
+}
+
+.link-arrow:hover {
+  gap: 12px;
+}
+
+.btn--ghost:hover {
+  --_bg: var(--color-accent);
+  --_fg: #fff;
+}
+
+.btn--on-dark {
+  --_bg: transparent;
+  --_fg: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn--on-dark:hover {
+  --_bg: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* spinning circular-text badge: rotating ring of text + center disc */
+.spin-badge {
+  position: relative;
+  display: block;
+  width: clamp(8rem, 6rem + 5vw, 11rem);
+  aspect-ratio: 1;
+}
+
+.spin-badge__ring {
+  width: 100%;
+  height: 100%;
+  animation: spin-badge-rotate 18s linear infinite;
+}
+
+.spin-badge__ring text {
+  fill: var(--color-accent);
+  font-size: 24px; /* Figma circle button: 24px на бейдже 200px */
+  font-weight: var(--weight-medium);
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+.spin-badge__disc {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 36%; /* Figma: диск 72px на бейдже 200px */
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.spin-badge:hover .spin-badge__disc {
+  background: var(--color-accent-hover);
+  transform: scale(1.08);
+}
+
+@keyframes spin-badge-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin-badge__ring {
+    animation: none;
+  }
+}
+
+/* ---- Reveal-on-scroll (progressive enhancement) ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== src/components/logo/logo.css ===== */
+/* ============================================================
+   Logo — "Da•Signa" wordmark with "meditsina ortalyğy" subtitle
+   (CSS-built, no raster)
+   ============================================================ */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.logo__img {
+  display: block;
+  width: auto;
+  height: clamp(40px, 2.6rem + 0.6vw, 50px);
+}
+
+/* Footer — larger lockup */
+.logo--stacked .logo__img {
+  height: clamp(56px, 4rem + 1vw, 67px);
+}
+
+/* ===== src/components/header/header.css ===== */
+/* ============================================================
+   Header — sticky top bar + mobile drawer menu
+   ============================================================ */
+
+/* Transparent overlay at rest (the hero image bleeds up behind it, per Figma);
+   becomes a solid frosted bar once the page is scrolled. */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.header.is-scrolled {
+  background: var(--color-bg);
+  border-bottom-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Frosted glass only on wider screens — backdrop-filter creates a
+   containing block for position:fixed, which would trap the mobile
+   drawer inside the header. Desktop has no drawer, so it is safe. */
+@media (min-width: 901px) {
+  .header.is-scrolled {
+    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: 84px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 0.5rem + 2vw, 2.5rem);
+}
+
+/* desktop: inline список ссылок, остальные секции дровера скрыты */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 0.5rem + 2vw, 2.5rem);
+  list-style: none;
+}
+.nav__top,
+.nav__connect,
+.nav__footer {
+  display: none;
+}
+
+.nav__link {
+  position: relative;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  padding-block: 0.5rem;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--color-accent);
+}
+
+.nav__link:hover::after,
+.nav__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* round phone icon button */
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  color: var(--color-accent);
+  background: transparent;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.icon-btn:hover {
+  background: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* hamburger */
+.menu-toggle {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-toggle span,
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background: var(--color-heading);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.menu-toggle span {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.menu-toggle span::before {
+  top: -7px;
+}
+.menu-toggle span::after {
+  top: 7px;
+}
+
+.menu-toggle[aria-expanded="true"] span {
+  background: transparent;
+}
+.menu-toggle[aria-expanded="true"] span::before {
+  transform: translateX(-50%) translateY(7px) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] span::after {
+  transform: translateX(-50%) translateY(-7px) rotate(-45deg);
+}
+
+/* mobile drawer */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .header__cta,
+  .icon-btn {
+    display: none;
+  }
+
+  /* ===== полноэкранный дровер (Figma «Меню») ===== */
+  .nav {
+    position: fixed;
+    inset: 0;
+    z-index: calc(var(--z-header) + 10);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    background: var(--color-bg);
+    transform: translateX(100%);
+    transition: transform var(--duration-normal) var(--ease-out-expo);
+    overflow-y: auto;
+  }
+
+  .nav.is-open {
+    transform: translateX(0);
+  }
+
+  /* шапка дровера: логотип + крестик */
+  .nav__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 1rem 0;
+  }
+  .nav__close {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    color: var(--color-heading);
+    cursor: pointer;
+  }
+
+  /* крупные пункты с разделителями */
+  .nav__links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 1.75rem 1rem 0;
+  }
+  .nav__links li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav__link {
+    display: block;
+    padding-block: 0.6rem;
+    font-size: 2rem; /* Figma: 32px */
+    font-weight: var(--weight-medium);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--color-heading);
+  }
+  .nav__link::after {
+    display: none;
+  }
+  .nav__link--active {
+    color: var(--color-accent);
+  }
+
+  /* CTA на всю ширину */
+  .nav__cta {
+    display: inline-flex;
+    margin: 1.5rem 1rem 0;
+    justify-content: center;
+  }
+
+  /* блок «Связаться с нами» */
+  .nav__connect {
+    display: block;
+    padding: 2rem 1rem 0;
+  }
+  .nav__connect-label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .nav-contact {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: #fff;
+    border: 1px solid rgba(67, 71, 78, 0.1);
+    border-radius: var(--radius-md);
+  }
+  .nav-contact + .nav-contact {
+    margin-top: 0.75rem;
+  }
+  .nav-contact__icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .nav-contact__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .nav-contact__label {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .nav-contact__value {
+    font-size: 1.125rem; /* 18px */
+    font-weight: var(--weight-medium);
+    color: var(--color-heading);
+  }
+
+  /* тёмный футер дровера */
+  .nav__footer {
+    display: block;
+    margin-top: auto;
+    padding: 2.25rem 1rem 1rem;
+    background: var(--color-dark);
+    text-align: center;
+  }
+  .nav__footer-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    color: #fff;
+  }
+  .nav__socials {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xs);
+    margin-top: var(--space-md);
+  }
+  .nav__socials a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    transition: background-color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out);
+  }
+  .nav__socials a:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .nav__copy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: var(--text-sm);
+    color: #ddddde;
+  }
+  .nav__made {
+    color: #fff;
+  }
+  .nav__made b {
+    font-weight: var(--weight-semibold);
+  }
+}
+
+@media (min-width: 901px) {
+  .nav__cta {
+    display: none;
+  }
+}
+
+/* ===== src/components/hero/hero.css ===== */
+/* ============================================================
+   Hero
+   ============================================================ */
+
+.hero {
+  padding-block: clamp(0.5rem, 0.25rem + 0.6vw, 0.75rem) var(--space-section);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.85fr;
+  align-items: center;
+  gap: clamp(1.5rem, 1rem + 4vw, 4rem);
+  /* content column clears the fixed overlay header */
+  min-height: clamp(34rem, 28rem + 18vw, 47rem);
+}
+
+.hero__title {
+  font-size: var(--text-hero);
+  font-weight: var(--weight-medium); /* Figma: 500 */
+  line-height: 1; /* Figma: 100% */
+  max-width: 16ch;
+}
+
+.hero__lead {
+  margin-top: var(--space-md);
+  font-size: var(--text-lg);
+  line-height: 1; /* Figma: 100% */
+  color: var(--color-body); /* Figma: #43474E */
+  max-width: 42ch;
+}
+
+.hero__cta {
+  margin-top: var(--space-lg);
+}
+
+.hero__media {
+  position: relative;
+  align-self: start;
+}
+
+.hero__image {
+  width: 100%;
+  aspect-ratio: 583 / 750;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+/* circular rotating-text badge in the gap left of the image
+   (Figma: badge centre sits ~150px left of the image's left edge) */
+.hero__badge {
+  position: absolute;
+  left: clamp(-15rem, -17vw, -8rem);
+  bottom: 2.2rem;
+  width: clamp(8rem, 6rem + 5vw, 11rem);
+}
+
+@media (max-width: 760px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  /* single column stacks under the fixed header — add top clearance */
+  .hero {
+    padding-top: calc(84px + var(--space-md));
+  }
+
+  .hero__title {
+    max-width: 100%;
+  }
+
+  .hero__media {
+    order: 3;
+    margin-top: var(--space-md);
+  }
+
+  /* on mobile the layout uses the pill CTA, not the disc */
+  .hero__badge {
+    display: none;
+  }
+}
+
+@media (min-width: 761px) {
+  /* on desktop the disc is the primary CTA; hide the pill */
+  .hero__cta {
+    display: none;
+  }
+
+  /* фото в hero — почти до правого края экрана (Figma: ~10px от края) */
+  .hero__grid {
+    max-width: none;
+    padding-left: calc(
+      max(0px, (100vw - var(--container-max)) / 2) + var(--container-pad)
+    );
+    padding-right: 10px;
+  }
+}
+
+/* ===== src/components/about/about.css ===== */
+/* ============================================================
+   About ("О компании") — image | text | image, on cream
+   ============================================================ */
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(1.5rem, 1rem + 1vw, 2rem);
+  align-items: center;
+}
+
+/* центральная колонка (Figma Frame 19): заголовок →12px→ текст →32px→ кнопка */
+.about__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__img {
+  width: 100%;
+  aspect-ratio: 437 / 423;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.about__title {
+  color: var(--color-accent);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem); /* Figma: 32px */
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+}
+
+.about__text {
+  margin-top: 0.75rem; /* Figma: 12px заголовок → текст */
+  color: var(--color-body);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug); /* Figma: 120% */
+}
+
+.about__btn {
+  align-self: flex-start;
+  margin-top: 2rem; /* Figma: 32px текст → кнопка */
+}
+
+@media (max-width: 1000px) {
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .about__body {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+  /* Figma mobile: блок «О компании» — только текст + кнопка, без фото */
+  .about__img {
+    display: none;
+  }
+  .about__btn {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+/* ===== src/components/advantages/advantages.css ===== */
+/* ============================================================
+   Advantages ("Почему Выбирают Нас?")
+   ============================================================ */
+
+.advantages__title {
+  font-size: var(--text-h3);
+  color: var(--color-accent);
+  margin-bottom: var(--space-xl);
+}
+
+.advantages__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+}
+
+.advantage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-md);
+}
+
+/* icon shown on mobile only (desktop uses the top divider) */
+.advantage__icon {
+  display: none;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: #fff;
+  margin-bottom: var(--space-2xs);
+}
+
+.advantage__icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.advantage__title {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+
+.advantage__text {
+  font-size: var(--text-sm);
+  color: var(--color-body);
+  max-width: 38ch;
+}
+
+@media (max-width: 820px) {
+  .advantages__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  /* Figma mobile: иконка слева, заголовок+текст справа, разделитель сверху */
+  .advantage {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "icon title"
+      "icon text";
+    column-gap: var(--space-sm);
+    row-gap: var(--space-3xs);
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-md);
+  }
+  .advantage__icon {
+    display: grid;
+    grid-area: icon;
+    align-self: start;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0;
+  }
+  .advantage__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  .advantage__title {
+    grid-area: title;
+  }
+  .advantage__text {
+    grid-area: text;
+    max-width: none;
+  }
+}
+
+/* ===== src/components/services/services.css ===== */
+/* ============================================================
+   Services ("Наши Услуги")
+   Desktop: tab list (left) + content panel (right)
+   Mobile:  accordion
+   ============================================================ */
+
+.services__layout {
+  display: grid;
+  grid-template-columns: 0.85fr 2fr;
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  align-items: start;
+}
+
+/* ---- tab list ---- */
+.services__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.services__tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 1.15rem 0.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  text-align: left;
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+  color: var(--color-muted); /* Figma: неактивные вкладки #71717A */
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out),
+    padding-left var(--duration-normal) var(--ease-out-expo);
+}
+
+.services__tab:hover {
+  color: var(--color-accent);
+  padding-left: 0.6rem;
+}
+
+.services__tab[aria-selected="true"] {
+  color: var(--color-accent);
+}
+
+.services__tab-arrow {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.services__tab:hover .services__tab-arrow,
+.services__tab[aria-selected="true"] .services__tab-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- content panel ---- */
+.services__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.25rem, 1rem + 2vw, 2.5rem);
+  align-items: center;
+}
+
+/* content column: title + text + badge as a centred vertical group
+   (per Figma: text, 32px gap, then the 200px badge centred in the column) */
+.services__panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 1rem + 1vw, 2rem);
+}
+
+.services__panel-wrap {
+  position: relative;
+}
+
+.services__panel-media {
+  position: relative;
+}
+
+.services__panel-img {
+  width: 100%;
+  aspect-ratio: 437 / 537;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+/* shared "выбрать" badge — in flow at the bottom of the content column,
+   centred horizontally (JS moves it into the active panel's body) */
+.services__badge {
+  align-self: center;
+  width: clamp(8rem, 5rem + 6vw, 12.5rem);
+}
+
+.services__panel-title {
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem); /* Figma: 32px */
+  font-weight: var(--weight-medium); /* Figma: 500 */
+  color: var(--color-heading);
+}
+
+.services__panel-text {
+  margin-top: var(--space-sm);
+  font-size: var(--text-lg);
+  color: var(--color-body); /* Figma: #43474E */
+}
+
+.services__panel[hidden] {
+  display: none;
+}
+
+/* fade-in when switching tab */
+.services__panel.is-entering {
+  animation: panel-fade var(--duration-normal) var(--ease-out);
+}
+
+@keyframes panel-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- mobile accordion ---- */
+.services__accordion-panel {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .services__layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* desktop panel hidden, tabs become accordion headers */
+  .services__panel-wrap {
+    display: none;
+  }
+
+  .services__tab {
+    font-size: var(--text-lg);
+  }
+
+  /* Figma mobile: стрелка указывает вправо (→); вниз — только при раскрытии */
+  .services__tab-arrow {
+    opacity: 1;
+    transform: none;
+    transition: transform var(--duration-normal) var(--ease-out-expo);
+  }
+
+  .services__tab[aria-expanded="true"] .services__tab-arrow {
+    transform: rotate(90deg);
+  }
+
+  .services__accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows var(--duration-normal) var(--ease-out-expo);
+  }
+
+  .services__accordion-panel.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  .services__accordion-inner {
+    min-height: 0;
+  }
+
+  .services__accordion-content {
+    padding: var(--space-sm) 0 var(--space-md);
+  }
+
+  .services__accordion-content img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+  }
+}
+
+/* ===== src/components/specialists/specialists.css ===== */
+/* ============================================================
+   Specialists ("Специалисты") — carousel of doctor cards
+   ============================================================ */
+
+.specialists__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 1fr);
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--space-sm);
+  scrollbar-width: none;
+}
+
+.specialists__track::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .specialists__track {
+    grid-auto-columns: calc((100% - 3 * var(--space-md)) / 4);
+  }
+}
+
+.doctor-card {
+  scroll-snap-align: start;
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-cream);
+  overflow: hidden;
+  padding: var(--space-2xs);
+}
+
+.doctor-card__img {
+  width: 100%;
+  aspect-ratio: 322 / 300;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius-md);
+}
+
+.doctor-card__body {
+  position: relative;
+  margin: -2.5rem var(--space-2xs) var(--space-2xs);
+  padding: var(--space-md) var(--space-sm) var(--space-sm);
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.doctor-card__tag {
+  position: absolute;
+  top: -0.9rem;
+  left: var(--space-sm);
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+.doctor-card__name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium); /* Figma: 450 */
+  color: var(--color-heading);
+}
+
+.doctor-card__desc {
+  margin-top: var(--space-3xs);
+  font-size: var(--text-xs);
+  color: var(--color-body); /* Figma: #43474E */
+  line-height: var(--leading-normal);
+}
+
+/* Doctor strip is a free-scroll carousel (drag / trackpad / swipe) — no arrows,
+   matching the Figma design. */
+
+/* ===== src/components/appointment/appointment.css ===== */
+/* ============================================================
+   Appointment form ("Запишитесь на прием")
+   ============================================================ */
+
+.appointment {
+  position: relative;
+  padding-block: var(--space-section);
+  background-image: linear-gradient(
+      90deg,
+      rgba(29, 29, 27, 0.15),
+      var(--color-accent-soft)
+    ),
+    image-set(url("/assets/images/form-bg.webp") type("image/webp"));
+  background-size: cover;
+  background-position: center;
+}
+
+.appointment__card {
+  max-width: 720px;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 1rem + 3vw, 3rem);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.appointment__title {
+  text-align: center;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-semibold); /* Figma: 600 */
+  line-height: 1; /* Figma: 100% */
+  color: var(--color-body); /* Figma: #43474E */
+  margin-bottom: var(--space-lg);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+
+.field__control {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  font-size: var(--text-base);
+  color: var(--color-heading);
+  transition: border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.field__control::placeholder {
+  color: var(--color-muted);
+}
+
+.field__control:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-tint);
+}
+
+textarea.field__control {
+  resize: vertical;
+  min-height: 96px;
+}
+
+select.field__control {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.field__error {
+  font-size: var(--text-xs);
+  color: #d92d20;
+  min-height: 1em;
+}
+
+.field__control[aria-invalid="true"] {
+  border-color: #d92d20;
+}
+
+.appointment__submit {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: var(--space-2xs);
+  min-width: 240px;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== src/components/contacts/contacts.css ===== */
+/* ============================================================
+   Contacts ("Наши контакты") — intro | branches+socials | map
+   ============================================================ */
+
+.contacts__grid {
+  display: grid;
+  /* Figma: интро 437 | адреса 315 | карта 550 */
+  grid-template-columns: 1.39fr 1fr 1.75fr;
+  gap: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  align-items: stretch;
+}
+
+.contacts__intro p {
+  font-size: var(--text-lg);
+  color: var(--color-body);
+  margin-block: var(--space-sm) var(--space-lg);
+  max-width: 26ch;
+}
+
+.contacts__subtitle {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+  margin-bottom: var(--space-md);
+}
+
+.contacts__col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* branches */
+.branches {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Figma: 16px между филиалами */
+}
+
+/* Figma: адрес → телефон → ссылки, без разделителей, 16px между филиалами */
+.branch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.branch__addr {
+  font-size: var(--text-lg);
+  color: var(--color-body); /* Figma: #43474E */
+}
+
+.branch__phone {
+  display: inline-block;
+  width: fit-content;
+  font-size: var(--text-lg);
+  color: var(--color-body);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.branch__phone:hover {
+  color: var(--color-accent);
+}
+
+.branch__links {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-3xs);
+}
+
+.branch__links a {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  border-bottom: 1px solid transparent;
+  transition: color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.branch__links a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* socials block (under the branches) */
+.contacts__socials {
+  margin-top: var(--space-lg);
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-2xs);
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  transition: background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.socials a:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* map */
+.contacts__map {
+  display: flex;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.contacts__map a {
+  display: block;
+  width: 100%;
+}
+
+.contacts__map img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+}
+
+@media (max-width: 920px) {
+  /* Figma mobile: заголовок → карта → адреса → соцсети */
+  .contacts__grid {
+    grid-template-columns: 1fr;
+  }
+  .contacts__intro {
+    order: 1;
+  }
+  .contacts__map {
+    order: 2;
+  }
+  .contacts__col {
+    order: 3;
+  }
+  /* на мобильном в интро остаётся только заголовок */
+  .contacts__intro p,
+  .contacts__intro .btn {
+    display: none;
+  }
+  .contacts__map img {
+    min-height: 240px;
+  }
+}
+
+/* ===== src/components/error404/error404.css ===== */
+/* ============================================================
+   404 — страница не найдена (контент по центру между шапкой и футером)
+   ============================================================ */
+
+.error404 {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: calc(84px + clamp(2rem, 1rem + 4vw, 4.5rem)) var(--container-pad)
+    clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  text-align: center;
+}
+
+.error404__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 640px;
+}
+
+.error404__digits {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* точная графика «404» из Figma (две «4» + стетоскоп), SVG-экспорт */
+.error404__graphic {
+  width: clamp(17rem, 12rem + 28vw, 34.5rem); /* Figma: ~552px */
+  height: auto;
+}
+
+.error404__title {
+  margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+}
+
+.error404__text {
+  margin-top: var(--space-md);
+  max-width: 46ch;
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}
+
+.error404__btn {
+  margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+}
+
+/* ===== src/components/about-page/about-page.css ===== */
+/* ============================================================
+   Страница «О центре» — статистика, подход, атмосфера, награды
+   ============================================================ */
+
+/* активный пункт меню */
+.nav__link--active {
+  color: var(--color-accent);
+}
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+
+/* hero — белая карточка-статистика на фото */
+.hero__stat {
+  position: absolute;
+  left: clamp(0.75rem, 2%, 1.25rem);
+  bottom: clamp(0.75rem, 2%, 1.25rem);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem 0.55rem 0.6rem;
+  background: #fff;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+}
+.hero__stat-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-accent-tint);
+  color: var(--color-accent);
+}
+.hero__stat-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.hero__stat-since {
+  font-size: 0.75rem;
+  color: #6e6a64;
+}
+.hero__stat-value {
+  font-size: 0.875rem;
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+
+/* статистика */
+.section--stats {
+  padding-block: 0 var(--space-section);
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+}
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.about-stat + .about-stat {
+  padding-left: clamp(1.5rem, 1rem + 3vw, 4rem);
+  border-left: 1px solid var(--color-border);
+}
+.about-stat__num {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-semibold); /* Figma: 600 */
+  line-height: 1;
+  color: var(--color-heading);
+}
+.about-stat__label {
+  font-size: var(--text-lg);
+  color: var(--color-heading);
+}
+
+/* Наш подход — карточка с тинтом */
+.approach {
+  display: grid;
+  grid-template-columns: 0.42fr 1fr; /* Figma: 377 | 879 */
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  align-items: start;
+  padding: clamp(1.75rem, 1.2rem + 3vw, 3.5rem);
+  background: rgba(113, 113, 122, 0.1); /* Figma: #71717A @ 10% */
+  border-radius: var(--radius-lg); /* 24px */
+}
+.approach__title {
+  font-size: var(--text-h2);
+  line-height: 1;
+  color: var(--color-heading);
+}
+.approach__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.approach__body p {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}
+
+/* Атмосфера заботы — бенто-галерея */
+.atmosphere__grid {
+  display: grid;
+  grid-template-columns: 2.06fr 1fr 1fr; /* Figma: 671 | 326 | 326 */
+  grid-auto-rows: 1fr;
+  gap: clamp(0.75rem, 0.5rem + 1vw, 1.125rem);
+}
+.atmosphere__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+.atmosphere__img--tall {
+  grid-row: 1 / 3;
+  aspect-ratio: 671 / 703;
+}
+.atmosphere__img--wide {
+  grid-column: 2 / 4;
+}
+
+/* Лицензии и награды */
+.awards__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+}
+.award-card {
+  display: flex;
+  flex-direction: column;
+}
+.award-card__img {
+  width: 100%;
+  aspect-ratio: 322 / 455;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+.award-card__title {
+  margin-top: var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium); /* Figma: 450 */
+  color: var(--color-heading);
+}
+.award-card__desc {
+  margin-top: var(--space-3xs);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--color-body);
+}
+
+@media (max-width: 900px) {
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  .about-stat + .about-stat {
+    padding-left: 0;
+    border-left: 0;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+  }
+  .approach {
+    grid-template-columns: 1fr;
+  }
+  .atmosphere__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .atmosphere__img--tall {
+    grid-row: auto;
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 10;
+  }
+  .atmosphere__img--wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 7;
+  }
+  .awards__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 540px) {
+  .awards__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== src/components/contacts-page/contacts-page.css ===== */
+/* ============================================================
+   Страница «Контакты» — герой, филиалы + карта, способы связи
+   ============================================================ */
+
+.contacts-hero {
+  padding: calc(84px + clamp(2rem, 1rem + 4vw, 4.5rem)) var(--container-pad)
+    clamp(1rem, 0.5rem + 2vw, 2rem);
+  text-align: center;
+}
+.contacts-hero__title {
+  font-size: clamp(2.5rem, 1.4rem + 5vw, 4rem); /* Figma: 64px */
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  color: var(--color-heading);
+}
+.contacts-hero__lead {
+  margin: var(--space-md) auto 0;
+  max-width: 56ch;
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}
+
+/* филиалы (скролл-колонка) + карта */
+.branches-map {
+  display: grid;
+  grid-template-columns: 340px 1fr; /* Figma: 322 | 1014 */
+  gap: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  align-items: stretch;
+}
+.branches-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-height: 600px;
+  overflow-y: auto;
+  /* Figma: кастомный скроллбар слева — трек #E8E0D2, ползунок оранжевый */
+  direction: rtl;
+  padding-left: 0.9rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) #e8e0d2;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.branches-col > * {
+  direction: ltr;
+}
+.branches-col::-webkit-scrollbar {
+  width: 5px;
+}
+.branches-col::-webkit-scrollbar-track {
+  background: #e8e0d2;
+  border-radius: var(--radius-pill);
+}
+.branches-col::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+.branches-col::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
+}
+.branches-col.is-grabbing {
+  cursor: grabbing;
+  user-select: none;
+}
+.branches-col.is-grabbing a {
+  pointer-events: none;
+}
+.branch-card {
+  flex-shrink: 0;
+  padding: 1.5rem; /* Figma: 24px */
+  background: #fff;
+  border: 1px solid rgba(67, 71, 78, 0.1); /* Figma: #43474E @ 10% */
+  border-radius: var(--radius-lg); /* Figma: 24px */
+}
+.branch-card__name {
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+.branch-card__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--space-2xs);
+  font-size: var(--text-base);
+  color: var(--color-body);
+}
+.branch-card__ic {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+.branch-card__phone {
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.branch-card__phone:hover {
+  color: var(--color-accent);
+}
+.branch-card__hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: var(--space-2xs);
+  padding-left: calc(17px + 0.5rem);
+}
+.branch-card__hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: var(--text-base);
+  color: var(--color-body);
+}
+.branch-card__maps {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--space-sm);
+  flex-wrap: wrap;
+}
+.branch-card__open {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+.branch-card__maps a {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+.branch-card__maps a:hover {
+  border-bottom-color: var(--color-accent);
+}
+.branches-map__map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.branches-map__map,
+.branches-map__map a {
+  display: block;
+  height: 100%;
+}
+.branches-map__map img {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  object-fit: cover;
+}
+
+/* способы связи */
+.connect__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+}
+.connect-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+  padding: var(--space-md);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+.connect-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+.connect-card__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-tint);
+  color: var(--color-accent);
+}
+.connect-card__label {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+.connect-card__value {
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+
+@media (max-width: 900px) {
+  .branches-map {
+    grid-template-columns: 1fr;
+  }
+  .branches-col {
+    max-height: none;
+    overflow: visible;
+  }
+  .branches-map__map img {
+    min-height: 320px;
+  }
+  .connect__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .connect__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== src/components/footer/footer.css ===== */
+/* ============================================================
+   Footer
+   ============================================================ */
+
+.footer {
+  background: var(--color-dark);
+  color: #ddddde;
+  padding-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1fr 0.9fr;
+  gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+  padding-bottom: var(--space-2xl);
+}
+
+.footer__about {
+  max-width: 40ch;
+}
+
+.footer__desc {
+  margin-top: var(--space-md);
+  font-size: var(--text-base);
+  color: #ddddde;
+}
+
+.footer__col-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: #fff;
+  margin-bottom: var(--space-md);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer__links a {
+  color: #ddddde;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.footer__links a:hover {
+  color: var(--color-accent);
+}
+
+.footer__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-size: var(--text-base);
+}
+
+.footer__contacts .branch__addr {
+  font-size: var(--text-base);
+  color: #ddddde;
+}
+
+.footer__contacts .branch__phone {
+  font-size: var(--text-base);
+  color: #ddddde;
+}
+
+.footer__socials {
+  display: flex;
+  gap: var(--space-2xs);
+}
+
+.footer__socials a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.footer__socials a:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.footer__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: var(--text-sm);
+  color: #ddddde;
+}
+
+.footer__made {
+  font-size: var(--text-xs);
+  color: #fff;
+}
+
+.footer__made b {
+  color: #fff;
+  font-weight: var(--weight-semibold);
+}
+
+@media (max-width: 920px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer__about {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+  .footer__bar {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ===== src/components/widgets/widgets.css ===== */
+/* ============================================================
+   Floating WhatsApp widget + success modal
+   ============================================================ */
+
+.wa-widget {
+  position: fixed;
+  right: clamp(1rem, 0.5rem + 2vw, 2rem);
+  bottom: clamp(1rem, 0.5rem + 2vw, 2rem);
+  z-index: var(--z-widget);
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-pill);
+  background: var(--color-whatsapp);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.wa-widget::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-whatsapp);
+  opacity: 0.45;
+  animation: wa-pulse 2.4s var(--ease-out) infinite;
+  z-index: -1;
+}
+
+.wa-widget:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-lg);
+}
+
+.wa-widget svg {
+  width: 32px;
+  height: 32px;
+}
+
+@keyframes wa-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-widget::before {
+    animation: none;
+  }
+}
+
+/* ---- success modal ---- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--space-md);
+  background: rgba(29, 29, 27, 0.55);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-normal) var(--ease-out),
+    visibility var(--duration-normal);
+}
+
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__dialog {
+  width: min(440px, 100%);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(16px) scale(0.98);
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.modal.is-open .modal__dialog {
+  transform: none;
+}
+
+.modal__icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--space-md);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-tint);
+  color: var(--color-accent);
+}
+
+.modal__title {
+  font-size: var(--text-h4);
+  margin-bottom: var(--space-2xs);
+}
+
+.modal__text {
+  color: var(--color-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.modal__action {
+  width: 100%;
+  justify-content: center;
+}
+
+.modal__close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-heading);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.modal__close:hover {
+  background: var(--color-border);
+}

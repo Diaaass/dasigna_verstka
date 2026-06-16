@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Da.Signa — медицинский центр в Алматы | Диагностика и лечение</title>
+    <meta
+      name="description"
+      content="Медицинский центр Da.Signa: кардиология, эндокринология, УЗИ, ЭКГ, ЭХО-КГ, СМАД, холтер, анализы и процедурный кабинет. Точная диагностика и индивидуальный подход. Запишитесь на прием онлайн."
+    />
+    <meta name="theme-color" content="#fff9f4" />
+    <link rel="canonical" href="https://dasigna.kz/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Da.Signa — медицинский центр в Алматы" />
+    <meta
+      property="og:description"
+      content="Забота о вашем здоровье с точной диагностикой и профессиональным подходом."
+    />
+    <meta property="og:locale" content="ru_RU" />
+
+    <!-- Fonts: Jost as a free Futura PT substitute -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload LCP hero image -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/hero.webp"
+      fetchpriority="high"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/vendor/lenis.css?v=21" />
+    <link rel="stylesheet" href="src/styles/main.css?v=21" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Da.Signa",
+        "description": "Медицинский центр: кардиология, эндокринология, диагностика и лечение.",
+        "url": "https://dasigna.kz/",
+        "telephone": "+7 (727) 123-45-67",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Алматы",
+          "streetAddress": "ул. Абая, 25",
+          "addressCountry": "KZ"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- ========================= HEADER ========================= -->
+    <header class="header" data-header>
+      <div class="container header__inner">
+        <a class="logo" href="#top" aria-label="Da.Signa — на главную">
+          <img class="logo__img" src="assets/logo/logo-dark.svg" width="129" height="52" alt="Da.Signa — медицинский центр" />
+        </a>
+
+        <nav class="nav" data-nav id="primary-nav" aria-label="Основная навигация">
+          <div class="nav__top">
+            <a class="logo" href="index.html" aria-label="Da.Signa — на главную">
+              <img class="logo__img" src="assets/logo/logo-dark.svg" width="129" height="52" alt="Da.Signa — медицинский центр" />
+            </a>
+            <button class="nav__close" data-menu-close type="button" aria-label="Закрыть меню">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <ul class="nav__links">
+            <li><a class="nav__link" href="about.html">О центре</a></li>
+            <li><a class="nav__link" href="#services">Услуги</a></li>
+            <li><a class="nav__link" href="#specialists">Врачи</a></li>
+            <li><a class="nav__link" href="contacts.html">Контакты</a></li>
+          </ul>
+
+          <a class="btn nav__cta" href="#appointment">
+            Записаться на прием
+            <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+
+          <div class="nav__connect">
+            <span class="nav__connect-label">Связаться с нами</span>
+            <a class="nav-contact" href="tel:+77755550101">
+              <span class="nav-contact__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <span class="nav-contact__text"><span class="nav-contact__label">Телефон</span><span class="nav-contact__value">+7 775 555 01 01</span></span>
+            </a>
+            <a class="nav-contact" href="mailto:hello@dasigna.com">
+              <span class="nav-contact__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <span class="nav-contact__text"><span class="nav-contact__label">Почта</span><span class="nav-contact__value">hello@dasigna.com</span></span>
+            </a>
+          </div>
+
+          <div class="nav__footer">
+            <h3 class="nav__footer-title">Мы в социальных сетях</h3>
+            <div class="nav__socials">
+              <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2s-1.2.2-3.7-.9-3.9-3.6-4-3.8-.9-1.2-.9-2.3.6-1.6.8-1.8.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6s.7 1.1 1.4 1.7c1 .9 1.7 1.1 2 1.2s.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.6 0 .9z"/></svg></a>
+              <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9V7c0-.6.4-1 1-1h2V3h-3a4 4 0 0 0-4 4v2H8v3h2v9h3v-9h2.5l.5-3z"/></svg></a>
+            </div>
+            <div class="nav__copy">
+              <span>©Da.Signa <span data-year>2026</span></span>
+              <span class="nav__made">Сделано в <b>factum</b></span>
+            </div>
+          </div>
+        </nav>
+
+        <div class="header__actions">
+          <a class="icon-btn" href="tel:+77271234567" aria-label="Позвонить нам">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <a class="btn header__cta" href="#appointment">Записаться на прием</a>
+          <button
+            class="menu-toggle"
+            data-menu-toggle
+            type="button"
+            aria-label="Меню"
+            aria-expanded="false"
+            aria-controls="primary-nav"
+          >
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ========================= HERO ========================= -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="container hero__grid">
+          <div class="hero__content reveal">
+            <h1 class="hero__title" id="hero-heading">
+              Забота <span class="text-accent">о вашем здоровье</span> с точной
+              диагностикой и профессиональным подходом
+            </h1>
+            <p class="hero__lead">
+              Кардиология, эндокринология, УЗИ, ЭКГ, анализы и процедурный
+              кабинет в одном месте
+            </p>
+            <a class="btn hero__cta" href="#appointment">
+              Записаться на прием
+              <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+
+          <div class="hero__media reveal">
+            <img
+              class="hero__image"
+              src="assets/images/hero.webp"
+              width="583"
+              height="750"
+              fetchpriority="high"
+              alt="Врачи медицинского центра Da.Signa на консультации"
+            />
+            <div class="hero__badge">
+              <a class="spin-badge" href="#appointment" aria-label="Записаться на прием">
+                <svg class="spin-badge__ring" viewBox="0 0 220 220" aria-hidden="true">
+                  <defs>
+                    <path id="badge-arc-hero" d="M110,110 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" />
+                  </defs>
+                  <text>
+                    <textPath href="#badge-arc-hero" startOffset="0">записаться на прием    записаться на прием    </textPath>
+                  </text>
+                </svg>
+                <span class="spin-badge__disc" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= ABOUT ========================= -->
+      <section class="section" id="about" aria-labelledby="about-heading">
+        <div class="container about__grid reveal">
+          <img
+            class="about__img"
+            src="assets/images/about-1.webp"
+            width="437"
+            height="423"
+            loading="lazy"
+            alt="Команда врачей Da.Signa"
+          />
+          <div class="about__body">
+            <h2 class="about__title" id="about-heading">
+              Da.Signa — медицинский центр, где забота о вашем здоровье всегда на
+              первом месте.
+            </h2>
+            <p class="about__text">
+              Мы предлагаем широкий спектр услуг, включая консультации,
+              диагностику и лечение, с акцентом на кардиологию и эндокринологию.
+              Наши специалисты используют новейшие технологии для точной
+              диагностики и эффективного лечения.
+            </p>
+            <a class="btn about__btn" href="#services">
+              Подробнее о центре
+              <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+          <img
+            class="about__img"
+            src="assets/images/about-2.webp"
+            width="437"
+            height="423"
+            loading="lazy"
+            alt="Современные методы диагностики"
+          />
+        </div>
+      </section>
+
+      <!-- ========================= ADVANTAGES ========================= -->
+      <section class="section" aria-labelledby="adv-heading">
+        <div class="container">
+          <h2 class="advantages__title reveal" id="adv-heading">
+            Почему Выбирают Нас?
+          </h2>
+          <ul class="advantages__grid">
+            <li class="advantage reveal">
+              <span class="advantage__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              <h3 class="advantage__title">Профессиональная команда</h3>
+              <p class="advantage__text">
+                С более чем 10 лет опыта в медицине, наши врачи обладают высокой
+                квалификацией и готовы предложить вам самый надежный подход.
+              </p>
+            </li>
+            <li class="advantage reveal">
+              <span class="advantage__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </span>
+              <h3 class="advantage__title">Современные технологии</h3>
+              <p class="advantage__text">
+                Мы используем новейшие диагностические и лечебные технологии,
+                чтобы гарантировать точные результаты и эффективное лечение.
+              </p>
+            </li>
+            <li class="advantage reveal">
+              <span class="advantage__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <h3 class="advantage__title">Индивидуальный подход</h3>
+              <p class="advantage__text">
+                Каждый пациент получает персонализированный план лечения,
+                основанный на его уникальных потребностях и состоянии здоровья.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================= SERVICES ========================= -->
+      <section class="section" id="services" aria-labelledby="services-heading">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 class="section-title" id="services-heading">Наши Услуги</h2>
+          </div>
+
+          <div class="services__layout reveal">
+            <!-- Tab list (desktop) / accordion headers (mobile) -->
+            <div class="services__list" role="tablist" aria-label="Услуги">
+              <!-- buttons + mobile accordion panels injected/styled per item -->
+              <!-- 1 -->
+              <button class="services__tab" data-service-tab="s1" role="tab" aria-selected="true" aria-expanded="false">
+                Консультация врача
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s1"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+
+              <button class="services__tab" data-service-tab="s2" role="tab" aria-selected="false" aria-expanded="false">
+                СМАД
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s2"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+
+              <button class="services__tab" data-service-tab="s3" role="tab" aria-selected="false" aria-expanded="false">
+                Холтер
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s3"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+
+              <button class="services__tab" data-service-tab="s4" role="tab" aria-selected="false" aria-expanded="false">
+                ЭКГ
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s4"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+
+              <button class="services__tab" data-service-tab="s5" role="tab" aria-selected="false" aria-expanded="false">
+                ЭХО-КГ
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s5"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+
+              <button class="services__tab" data-service-tab="s6" role="tab" aria-selected="false" aria-expanded="false">
+                УЗИ всех органов и тканей
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s6"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+
+              <button class="services__tab" data-service-tab="s7" role="tab" aria-selected="false" aria-expanded="false">
+                Процедурный кабинет
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s7"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+
+              <button class="services__tab" data-service-tab="s8" role="tab" aria-selected="false" aria-expanded="false">
+                Анализы
+                <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <div class="services__accordion-panel" data-accordion-panel="s8"><div class="services__accordion-inner"><div class="services__accordion-content"></div></div></div>
+            </div>
+
+            <!-- Content panels (desktop) -->
+            <div class="services__panel-wrap">
+              <div class="services__panel" data-service-panel="s1" role="tabpanel">
+                <div class="services__panel-media">
+                  <img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="Консультация врача в Da.Signa" />
+                </div>
+                <div class="services__panel-body">
+                  <h3 class="services__panel-title">Персонализированные консультации в Da.Signa</h3>
+                  <p class="services__panel-text">Получите консультацию у высококвалифицированных специалистов нашего медицинского центра. Мы предлагаем гибкость в выборе услуг — от кардиологического обследования до эндокринологических консультаций.</p>
+                </div>
+              </div>
+
+              <div class="services__panel" data-service-panel="s2" role="tabpanel" hidden>
+                <div class="services__panel-media"><img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="СМАД" /></div>
+                <div class="services__panel-body"><h3 class="services__panel-title">Суточное мониторирование давления (СМАД)</h3><p class="services__panel-text">Непрерывное измерение артериального давления в течение суток для точной диагностики гипертонии и подбора эффективной терапии.</p></div>
+              </div>
+
+              <div class="services__panel" data-service-panel="s3" role="tabpanel" hidden>
+                <div class="services__panel-media"><img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="Холтер" /></div>
+                <div class="services__panel-body"><h3 class="services__panel-title">Холтеровское мониторирование ЭКГ</h3><p class="services__panel-text">Запись работы сердца в течение 24–48 часов в привычном для вас ритме жизни для выявления скрытых нарушений ритма.</p></div>
+              </div>
+
+              <div class="services__panel" data-service-panel="s4" role="tabpanel" hidden>
+                <div class="services__panel-media"><img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="ЭКГ" /></div>
+                <div class="services__panel-body"><h3 class="services__panel-title">Электрокардиография (ЭКГ)</h3><p class="services__panel-text">Быстрая и безболезненная оценка работы сердца с подробной расшифровкой врача-кардиолога.</p></div>
+              </div>
+
+              <div class="services__panel" data-service-panel="s5" role="tabpanel" hidden>
+                <div class="services__panel-media"><img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="ЭХО-КГ" /></div>
+                <div class="services__panel-body"><h3 class="services__panel-title">Эхокардиография (ЭХО-КГ)</h3><p class="services__panel-text">Ультразвуковое исследование сердца для оценки его структуры и функции в реальном времени.</p></div>
+              </div>
+
+              <div class="services__panel" data-service-panel="s6" role="tabpanel" hidden>
+                <div class="services__panel-media"><img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="УЗИ" /></div>
+                <div class="services__panel-body"><h3 class="services__panel-title">УЗИ всех органов и тканей</h3><p class="services__panel-text">Комплексная ультразвуковая диагностика органов брюшной полости, щитовидной железы, сосудов и мягких тканей.</p></div>
+              </div>
+
+              <div class="services__panel" data-service-panel="s7" role="tabpanel" hidden>
+                <div class="services__panel-media"><img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="Процедурный кабинет" /></div>
+                <div class="services__panel-body"><h3 class="services__panel-title">Процедурный кабинет</h3><p class="services__panel-text">Инъекции, забор анализов и медицинские манипуляции в стерильных условиях опытным медперсоналом.</p></div>
+              </div>
+
+              <div class="services__panel" data-service-panel="s8" role="tabpanel" hidden>
+                <div class="services__panel-media"><img class="services__panel-img" src="assets/images/services.webp" width="437" height="537" loading="lazy" alt="Анализы" /></div>
+                <div class="services__panel-body"><h3 class="services__panel-title">Лабораторные анализы</h3><p class="services__panel-text">Широкий спектр лабораторных исследований с быстрой готовностью результатов и удобной выдачей онлайн.</p></div>
+              </div>
+
+              <a class="spin-badge services__badge" href="#appointment" aria-label="Выбрать услугу">
+                <svg class="spin-badge__ring" viewBox="0 0 220 220" aria-hidden="true">
+                  <defs>
+                    <path id="badge-arc-svc" d="M110,110 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" />
+                  </defs>
+                  <text>
+                    <textPath href="#badge-arc-svc" startOffset="0">· выбрать · выбрать · выбрать · выбрать </textPath>
+                  </text>
+                </svg>
+                <span class="spin-badge__disc" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= SPECIALISTS ========================= -->
+      <section class="section" id="specialists" aria-labelledby="spec-heading">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2 class="section-title" id="spec-heading">Специалисты</h2>
+            <p class="section-head__intro">
+              Каждый из наших врачей — это эксперт в своей области с многолетним
+              опытом работы. Мы гарантируем индивидуальный подход для каждого
+              пациента.
+            </p>
+          </div>
+
+          <ul class="specialists__track" data-carousel-track data-lenis-prevent>
+            <li class="doctor-card reveal">
+              <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Калибаева Динара Бауыржановна" />
+              <div class="doctor-card__body">
+                <span class="doctor-card__tag">Кардиолог</span>
+                <h3 class="doctor-card__name">Калибаева Динара Бауыржановна</h3>
+                <p class="doctor-card__desc">15 лет опыта в диагностике и лечении заболеваний сердца.</p>
+              </div>
+            </li>
+            <li class="doctor-card reveal">
+              <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Иванов Сергей Петрович" />
+              <div class="doctor-card__body">
+                <span class="doctor-card__tag">Невролог</span>
+                <h3 class="doctor-card__name">Иванов Сергей Петрович</h3>
+                <p class="doctor-card__desc">Специалист по лечению заболеваний центральной и периферической нервной системы.</p>
+              </div>
+            </li>
+            <li class="doctor-card reveal">
+              <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Кузнецова Марина Александровна" />
+              <div class="doctor-card__body">
+                <span class="doctor-card__tag">Эндокринолог</span>
+                <h3 class="doctor-card__name">Кузнецова Марина Александровна</h3>
+                <p class="doctor-card__desc">Эксперт в области диагностики и терапии заболеваний эндокринной системы.</p>
+              </div>
+            </li>
+            <li class="doctor-card reveal">
+              <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Иванов Сергей Петрович" />
+              <div class="doctor-card__body">
+                <span class="doctor-card__tag">Кардиолог</span>
+                <h3 class="doctor-card__name">Иванов Сергей Петрович</h3>
+                <p class="doctor-card__desc">Специалист по лечению заболеваний сердца и сосудистой системы с многолетним опытом.</p>
+              </div>
+            </li>
+            <li class="doctor-card reveal">
+              <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Петрова Ольга Викторовна" />
+              <div class="doctor-card__body">
+                <span class="doctor-card__tag">Невролог</span>
+                <h3 class="doctor-card__name">Петрова Ольга Викторовна</h3>
+                <p class="doctor-card__desc">Профессионал в диагностике и лечении неврологических расстройств и заболеваний мозга.</p>
+              </div>
+            </li>
+            <li class="doctor-card reveal">
+              <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Смирнова Ольга Викторовна" />
+              <div class="doctor-card__body">
+                <span class="doctor-card__tag">Педиатр</span>
+                <h3 class="doctor-card__name">Смирнова Ольга Викторовна</h3>
+                <p class="doctor-card__desc">Опыт работы с новорожденными и детьми младшего возраста более 10 лет.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================= APPOINTMENT ========================= -->
+      <section class="appointment" id="appointment" aria-labelledby="appt-heading">
+        <div class="container">
+          <div class="appointment__card reveal">
+            <h2 class="appointment__title" id="appt-heading">Запишитесь на прием</h2>
+            <form class="form-grid" data-appointment-form>
+              <div class="field" data-field="name">
+                <label class="field__label" for="f-name">Имя</label>
+                <input class="field__control" id="f-name" name="name" type="text" placeholder="Ваше имя" autocomplete="name" />
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field" data-field="phone">
+                <label class="field__label" for="f-phone">Телефон</label>
+                <input class="field__control" id="f-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" data-phone />
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field field--full" data-field="service">
+                <label class="field__label" for="f-service">Услуга</label>
+                <select class="field__control" id="f-service" name="service">
+                  <option value="">Выберите услугу</option>
+                  <option>Консультация врача</option>
+                  <option>СМАД</option>
+                  <option>Холтер</option>
+                  <option>ЭКГ</option>
+                  <option>ЭХО-КГ</option>
+                  <option>УЗИ всех органов и тканей</option>
+                  <option>Процедурный кабинет</option>
+                  <option>Анализы</option>
+                </select>
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field field--full" data-field="comment">
+                <label class="field__label" for="f-comment">Комментарий</label>
+                <textarea class="field__control" id="f-comment" name="comment" placeholder="Дополнительная информация (опционально)"></textarea>
+              </div>
+              <button class="btn appointment__submit" type="submit">
+                Записаться на прием
+                <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= CONTACTS ========================= -->
+      <section class="section" id="contacts" aria-labelledby="contacts-heading">
+        <div class="container contacts__grid">
+          <div class="contacts__intro reveal">
+            <h2 class="section-title" id="contacts-heading">Наши контакты</h2>
+            <p>Выберите удобный филиал и свяжитесь с нами.</p>
+            <a class="link-arrow" href="#contacts">
+              Перейти в Контакты
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+
+          <div class="contacts__col reveal">
+            <h3 class="contacts__subtitle">Адреса наших филиалов</h3>
+            <div class="branches">
+            <article class="branch">
+              <p class="branch__addr">г. Алматы, ул. Абая, 25</p>
+              <a class="branch__phone" href="tel:+77271234567">+7 (727) 123-45-67</a>
+              <div class="branch__links"><a href="#">2GIS</a><a href="#">Яндекс Карта</a></div>
+            </article>
+            <article class="branch">
+              <p class="branch__addr">г. Алматы, пр. Республики, 10</p>
+              <a class="branch__phone" href="tel:+77172345678">+7 (717) 234-56-78</a>
+              <div class="branch__links"><a href="#">2GIS</a><a href="#">Яндекс Карта</a></div>
+            </article>
+            <article class="branch">
+              <p class="branch__addr">г. Алматы, ул. Тауке Хана, 7</p>
+              <a class="branch__phone" href="tel:+77253456789">+7 (725) 345-67-89</a>
+              <div class="branch__links"><a href="#">2GIS</a><a href="#">Яндекс Карта</a></div>
+            </article>
+            </div>
+
+            <div class="contacts__socials">
+              <h3 class="contacts__subtitle">Социальные сети</h3>
+              <div class="socials" aria-label="Социальные сети">
+                <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                <a href="#" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2s-1.2.2-3.7-.9-3.9-3.6-4-3.8-.9-1.2-.9-2.3.6-1.6.8-1.8.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6s.7 1.1 1.4 1.7c1 .9 1.7 1.1 2 1.2s.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.6 0 .9z"/></svg></a>
+                <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9V7c0-.6.4-1 1-1h2V3h-3a4 4 0 0 0-4 4v2H8v3h2v9h3v-9h2.5l.5-3z"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contacts__map reveal">
+            <a href="https://2gis.kz/almaty" target="_blank" rel="noopener" aria-label="Открыть карту филиалов">
+              <img src="assets/images/map.webp" width="550" height="391" loading="lazy" alt="Карта расположения филиалов Da.Signa в Алматы" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__about">
+            <span class="logo logo--light logo--stacked" aria-label="Da.Signa">
+              <img class="logo__img" src="assets/logo/logo-light.svg" width="166" height="67" alt="Da.Signa — медицинский центр" />
+            </span>
+            <p class="footer__desc">
+              Профессиональная медицинская помощь с индивидуальным подходом и
+              современными методами диагностики.
+            </p>
+          </div>
+
+          <nav class="footer__nav" aria-label="Разделы">
+            <h3 class="footer__col-title">Разделы</h3>
+            <div class="footer__links">
+              <a href="about.html">О Центре</a>
+              <a href="#services">Услуги</a>
+              <a href="#specialists">Врачи</a>
+              <a href="contacts.html">Контакты</a>
+            </div>
+          </nav>
+
+          <div class="footer__contacts-col">
+            <h3 class="footer__col-title">Контакты</h3>
+            <div class="footer__contacts">
+              <div><p class="branch__addr">г. Алматы, ул. Абая, 25</p><a class="branch__phone" href="tel:+77271234567">+7 (727) 123-45-67</a></div>
+              <div><p class="branch__addr">г. Алматы, ул. Абая, 25</p><a class="branch__phone" href="tel:+77075554433">+7 (707) 555-44-33</a></div>
+              <div><p class="branch__addr">г. Астана, ул. Достык, 30</p><a class="branch__phone" href="tel:+77008882211">+7 (700) 888-22-11</a></div>
+            </div>
+          </div>
+
+          <div class="footer__socials-col">
+            <h3 class="footer__col-title">Социальные сети</h3>
+            <div class="footer__socials">
+              <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2s-1.2.2-3.7-.9-3.9-3.6-4-3.8-.9-1.2-.9-2.3.6-1.6.8-1.8.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6s.7 1.1 1.4 1.7c1 .9 1.7 1.1 2 1.2s.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.6 0 .9z"/></svg></a>
+              <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9V7c0-.6.4-1 1-1h2V3h-3a4 4 0 0 0-4 4v2H8v3h2v9h3v-9h2.5l.5-3z"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bar">
+          <span>©Da.Signa <span data-year>2026</span>. All rights reserved</span>
+          <span class="footer__made">Сделано в <b>factum</b>.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================= WHATSAPP WIDGET ========================= -->
+    <a
+      class="wa-widget"
+      href="https://wa.me/77271234567"
+      target="_blank"
+      rel="noopener"
+      aria-label="Написать в WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2s-1.2.2-3.7-.9-3.9-3.6-4-3.8-.9-1.2-.9-2.3.6-1.6.8-1.8.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6s.7 1.1 1.4 1.7c1 .9 1.7 1.1 2 1.2s.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.6 0 .9z"/></svg>
+    </a>
+
+    <!-- ========================= SUCCESS MODAL ========================= -->
+    <div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal__dialog">
+        <button class="modal__close" type="button" data-modal-close aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="modal__icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h2 class="modal__title" id="modal-title">Заявка отправлена!</h2>
+        <p class="modal__text">
+          Спасибо за обращение. Наш администратор свяжется с вами в ближайшее
+          время для подтверждения записи.
+        </p>
+        <button class="btn modal__action" type="button" data-modal-close>
+          Отлично
+        </button>
+      </div>
+    </div>
+
+    <script src="assets/vendor/lenis.min.js?v=21" defer></script>
+    <script src="src/lib/main.js?v=21" defer></script>
+  </body>
+</html>
