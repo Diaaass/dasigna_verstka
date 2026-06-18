@@ -38,8 +38,8 @@
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/vendor/lenis.css?v=21" />
-    <link rel="stylesheet" href="src/styles/main.css?v=21" />
+    <link rel="stylesheet" href="assets/vendor/lenis.css?v=31" />
+    <link rel="stylesheet" href="src/styles/main.css?v=31" />
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -80,8 +80,8 @@
 
           <ul class="nav__links">
             <li><a class="nav__link" href="about.html">О центре</a></li>
-            <li><a class="nav__link" href="#services">Услуги</a></li>
-            <li><a class="nav__link" href="#specialists">Врачи</a></li>
+            <li><a class="nav__link" href="services.html">Услуги</a></li>
+            <li><a class="nav__link" href="doctors.html">Врачи</a></li>
             <li><a class="nav__link" href="contacts.html">Контакты</a></li>
           </ul>
 
@@ -165,12 +165,13 @@
             />
             <div class="hero__badge">
               <a class="spin-badge" href="#appointment" aria-label="Записаться на прием">
-                <svg class="spin-badge__ring" viewBox="0 0 220 220" aria-hidden="true">
+                <svg class="spin-badge__ring" viewBox="0 0 200 200" aria-hidden="true">
                   <defs>
-                    <path id="badge-arc-hero" d="M110,110 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" />
+                    <path id="badge-arc-hero" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" />
                   </defs>
-                  <text>
-                    <textPath href="#badge-arc-hero" startOffset="0">записаться на прием    записаться на прием    </textPath>
+                  <text text-anchor="middle">
+                    <textPath href="#badge-arc-hero" startOffset="25%">записаться на прием</textPath>
+                    <textPath href="#badge-arc-hero" startOffset="75%">записаться на прием</textPath>
                   </text>
                 </svg>
                 <span class="spin-badge__disc" aria-hidden="true">
@@ -370,12 +371,15 @@
               </div>
 
               <a class="spin-badge services__badge" href="#appointment" aria-label="Выбрать услугу">
-                <svg class="spin-badge__ring" viewBox="0 0 220 220" aria-hidden="true">
+                <svg class="spin-badge__ring" viewBox="0 0 200 200" aria-hidden="true">
                   <defs>
-                    <path id="badge-arc-svc" d="M110,110 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" />
+                    <path id="badge-arc-svc" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" />
                   </defs>
-                  <text>
-                    <textPath href="#badge-arc-svc" startOffset="0">· выбрать · выбрать · выбрать · выбрать </textPath>
+                  <text text-anchor="middle">
+                    <textPath href="#badge-arc-svc" startOffset="0%">выбрать</textPath>
+                    <textPath href="#badge-arc-svc" startOffset="25%">выбрать</textPath>
+                    <textPath href="#badge-arc-svc" startOffset="50%">выбрать</textPath>
+                    <textPath href="#badge-arc-svc" startOffset="75%">выбрать</textPath>
                   </text>
                 </svg>
                 <span class="spin-badge__disc" aria-hidden="true">
@@ -465,7 +469,7 @@
               </div>
               <div class="field" data-field="phone">
                 <label class="field__label" for="f-phone">Телефон</label>
-                <input class="field__control" id="f-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" data-phone />
+                <input class="field__control" id="f-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___ ____" autocomplete="tel" data-phone />
                 <span class="field__error" aria-live="polite"></span>
               </div>
               <div class="field field--full" data-field="service">
@@ -565,8 +569,8 @@
             <h3 class="footer__col-title">Разделы</h3>
             <div class="footer__links">
               <a href="about.html">О Центре</a>
-              <a href="#services">Услуги</a>
-              <a href="#specialists">Врачи</a>
+              <a href="services.html">Услуги</a>
+              <a href="doctors.html">Врачи</a>
               <a href="contacts.html">Контакты</a>
             </div>
           </nav>
@@ -628,7 +632,7 @@
       </div>
     </div>
 
-    <script src="assets/vendor/lenis.min.js?v=21" defer></script>
-    <script src="src/lib/main.js?v=21" defer></script>
+    <script src="assets/vendor/lenis.min.js?v=31" defer></script>
+    <script src="src/lib/main.js?v=31" defer></script>
   </body>
 </html>

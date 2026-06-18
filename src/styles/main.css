@@ -4,11 +4,8 @@
    global → компоненты. Не используйте инлайн-стили.
    ============================================================ */
 
-
-/* ===== src/styles/tokens.css ===== */
 /* ============================================================
    Da.Signa — Design Tokens
-   Extracted from Figma "Da Signa" (node 134:3458)
    ============================================================ */
 
 :root {
@@ -25,17 +22,24 @@
   --color-muted: #71717a;
 
   /* ---- Color: surfaces ---- */
+  --color-white: #ffffff;
   --color-bg: #fff9f4;
-  --color-surface: #ffffff;
+  --color-surface: var(--color-white);
   --color-surface-cream: #fff3e9;
   --color-dark: #1d1d1b;
   --color-dark-2: #2a2724;
 
+  /* ---- Color: text on dark / accent surfaces ---- */
+  --color-on-dark: #ddddde; /* muted light text on dark footer/cards */
+  --color-muted-warm: #6e6a64; /* warm grey captions */
+
   /* ---- Color: lines ---- */
   --color-border: #ddddde;
   --color-border-strong: #c9c9cb;
+  --color-scroll-track: #e8e0d2;
 
-  /* ---- Color: misc ---- */
+  /* ---- Color: state / misc ---- */
+  --color-danger: #d92d20;
   --color-whatsapp: #25d366;
 
   /* ---- Typography ---- */
@@ -74,6 +78,7 @@
   /* ---- Layout ---- */
   --container-max: 1400px;
   --container-pad: clamp(1rem, 0.4rem + 3vw, 2.5rem);
+  --header-height: 84px;
 
   /* ---- Radius ---- */
   --radius-sm: 0.5rem;
@@ -101,7 +106,6 @@
   --z-modal: 400;
 }
 
-/* ===== src/styles/typography.css ===== */
 /* ============================================================
    Da.Signa — Typography
    Primary face in the mockup is "Futura PT" (commercial, Adobe
@@ -182,14 +186,13 @@ small {
 
 .section-title {
   font-size: var(--text-h2);
-  line-height: 1; /* Figma: 100% */
+  line-height: 1;
 }
 
 .text-accent {
   color: var(--color-accent);
 }
 
-/* ===== src/styles/global.css ===== */
 /* ============================================================
    Da.Signa — Global base: reset, layout, buttons, utilities
    ============================================================ */
@@ -292,7 +295,8 @@ ol {
 
 .section-head__intro {
   max-width: 648px; /* Figma: блок интро 648px, 2 строки, по правому краю */
-  font-size: var(--text-lg);
+  /* Figma: 20px (Futura PT Book); чуть уменьшено под более широкий Jost */
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem); /* ≈18px */
   line-height: var(--leading-snug);
   color: var(--color-body);
   text-align: right;
@@ -301,7 +305,7 @@ ol {
 /* ---- Buttons ---- */
 .btn {
   --_bg: var(--color-accent);
-  --_fg: #fff;
+  --_fg: var(--color-white);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
@@ -363,12 +367,12 @@ ol {
 
 .btn--ghost:hover {
   --_bg: var(--color-accent);
-  --_fg: #fff;
+  --_fg: var(--color-white);
 }
 
 .btn--on-dark {
   --_bg: transparent;
-  --_fg: #fff;
+  --_fg: var(--color-white);
   border-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -381,19 +385,20 @@ ol {
 .spin-badge {
   position: relative;
   display: block;
-  width: clamp(8rem, 6rem + 5vw, 11rem);
+  width: clamp(10rem, 8rem + 4vw, 12.5rem);
   aspect-ratio: 1;
 }
 
 .spin-badge__ring {
   width: 100%;
   height: 100%;
+  overflow: visible; /* не обрезать глифы текста, выходящие за viewBox */
   animation: spin-badge-rotate 18s linear infinite;
 }
 
 .spin-badge__ring text {
   fill: var(--color-accent);
-  font-size: 24px; /* Figma circle button: 24px на бейдже 200px */
+  font-size: 24px;
   font-weight: var(--weight-medium);
   letter-spacing: 0;
   text-transform: lowercase;
@@ -403,13 +408,13 @@ ol {
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 36%; /* Figma: диск 72px на бейдже 200px */
+  width: 36%;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-white);
   transition: transform var(--duration-normal) var(--ease-out-expo),
     background-color var(--duration-fast) var(--ease-out);
 }
@@ -461,7 +466,6 @@ ol {
   }
 }
 
-/* ===== src/components/logo/logo.css ===== */
 /* ============================================================
    Logo — "Da•Signa" wordmark with "meditsina ortalyğy" subtitle
    (CSS-built, no raster)
@@ -484,7 +488,6 @@ ol {
   height: clamp(56px, 4rem + 1vw, 67px);
 }
 
-/* ===== src/components/header/header.css ===== */
 /* ============================================================
    Header — sticky top bar + mobile drawer menu
    ============================================================ */
@@ -525,7 +528,7 @@ ol {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
-  min-height: 84px;
+  min-height: var(--header-height);
 }
 
 .nav {
@@ -605,7 +608,7 @@ ol {
 
 .icon-btn:hover {
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-white);
   transform: translateY(-2px);
 }
 
@@ -668,11 +671,11 @@ ol {
     display: none;
   }
 
-  /* ===== полноэкранный дровер (Figma «Меню») ===== */
+  /* Полноэкранный дровер навигации */
   .nav {
     position: fixed;
     inset: 0;
-    z-index: calc(var(--z-header) + 10);
+    z-index: var(--z-menu);
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -719,7 +722,7 @@ ol {
   .nav__link {
     display: block;
     padding-block: 0.6rem;
-    font-size: 2rem; /* Figma: 32px */
+    font-size: 2rem;
     font-weight: var(--weight-medium);
     letter-spacing: 0;
     text-transform: none;
@@ -728,11 +731,7 @@ ol {
   .nav__link::after {
     display: none;
   }
-  .nav__link--active {
-    color: var(--color-accent);
-  }
 
-  /* CTA на всю ширину */
   .nav__cta {
     display: inline-flex;
     margin: 1.5rem 1rem 0;
@@ -757,7 +756,7 @@ ol {
     align-items: center;
     gap: 1rem;
     padding: 0.8rem;
-    background: #fff;
+    background: var(--color-white);
     border: 1px solid rgba(67, 71, 78, 0.1);
     border-radius: var(--radius-md);
   }
@@ -772,7 +771,7 @@ ol {
     flex-shrink: 0;
     border-radius: 50%;
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-white);
   }
   .nav-contact__text {
     display: flex;
@@ -800,7 +799,7 @@ ol {
   .nav__footer-title {
     font-size: var(--text-lg);
     font-weight: var(--weight-medium);
-    color: #fff;
+    color: var(--color-white);
   }
   .nav__socials {
     display: flex;
@@ -815,7 +814,7 @@ ol {
     height: 44px;
     border-radius: var(--radius-pill);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #fff;
+    color: var(--color-white);
     transition: background-color var(--duration-fast) var(--ease-out),
       border-color var(--duration-fast) var(--ease-out);
   }
@@ -832,10 +831,10 @@ ol {
     padding-top: var(--space-md);
     border-top: 1px solid rgba(255, 255, 255, 0.12);
     font-size: var(--text-sm);
-    color: #ddddde;
+    color: var(--color-on-dark);
   }
   .nav__made {
-    color: #fff;
+    color: var(--color-white);
   }
   .nav__made b {
     font-weight: var(--weight-semibold);
@@ -848,7 +847,6 @@ ol {
   }
 }
 
-/* ===== src/components/hero/hero.css ===== */
 /* ============================================================
    Hero
    ============================================================ */
@@ -868,16 +866,16 @@ ol {
 
 .hero__title {
   font-size: var(--text-hero);
-  font-weight: var(--weight-medium); /* Figma: 500 */
-  line-height: 1; /* Figma: 100% */
+  font-weight: var(--weight-medium);
+  line-height: 1;
   max-width: 16ch;
 }
 
 .hero__lead {
   margin-top: var(--space-md);
   font-size: var(--text-lg);
-  line-height: 1; /* Figma: 100% */
-  color: var(--color-body); /* Figma: #43474E */
+  line-height: 1;
+  color: var(--color-body);
   max-width: 42ch;
 }
 
@@ -915,7 +913,7 @@ ol {
 
   /* single column stacks under the fixed header — add top clearance */
   .hero {
-    padding-top: calc(84px + var(--space-md));
+    padding-top: calc(var(--header-height) + var(--space-md));
   }
 
   .hero__title {
@@ -949,7 +947,6 @@ ol {
   }
 }
 
-/* ===== src/components/about/about.css ===== */
 /* ============================================================
    About ("О компании") — image | text | image, on cream
    ============================================================ */
@@ -976,21 +973,22 @@ ol {
 
 .about__title {
   color: var(--color-accent);
-  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem); /* Figma: 32px */
+  /* Figma: 32px (Futura PT); чуть уменьшено под более широкий Jost */
+  font-size: clamp(1.375rem, 1.15rem + 1vw, 1.75rem); /* ≈28px на десктопе */
   font-weight: var(--weight-medium);
   line-height: var(--leading-snug);
 }
 
 .about__text {
-  margin-top: 0.75rem; /* Figma: 12px заголовок → текст */
+  margin-top: 0.75rem;
   color: var(--color-body);
-  font-size: var(--text-lg);
-  line-height: var(--leading-snug); /* Figma: 120% */
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem); /* ≈18px */
+  line-height: var(--leading-snug);
 }
 
 .about__btn {
   align-self: flex-start;
-  margin-top: 2rem; /* Figma: 32px текст → кнопка */
+  margin-top: 2rem;
 }
 
 @media (max-width: 1000px) {
@@ -1017,7 +1015,6 @@ ol {
   }
 }
 
-/* ===== src/components/advantages/advantages.css ===== */
 /* ============================================================
    Advantages ("Почему Выбирают Нас?")
    ============================================================ */
@@ -1050,7 +1047,7 @@ ol {
   height: 64px;
   border-radius: var(--radius-pill);
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-white);
   margin-bottom: var(--space-2xs);
 }
 
@@ -1109,7 +1106,6 @@ ol {
   }
 }
 
-/* ===== src/components/services/services.css ===== */
 /* ============================================================
    Services ("Наши Услуги")
    Desktop: tab list (left) + content panel (right)
@@ -1211,15 +1207,15 @@ ol {
 }
 
 .services__panel-title {
-  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem); /* Figma: 32px */
-  font-weight: var(--weight-medium); /* Figma: 500 */
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  font-weight: var(--weight-medium);
   color: var(--color-heading);
 }
 
 .services__panel-text {
   margin-top: var(--space-sm);
   font-size: var(--text-lg);
-  color: var(--color-body); /* Figma: #43474E */
+  color: var(--color-body);
 }
 
 .services__panel[hidden] {
@@ -1298,7 +1294,6 @@ ol {
   }
 }
 
-/* ===== src/components/specialists/specialists.css ===== */
 /* ============================================================
    Specialists ("Специалисты") — carousel of doctor cards
    ============================================================ */
@@ -1345,7 +1340,7 @@ ol {
   position: relative;
   margin: -2.5rem var(--space-2xs) var(--space-2xs);
   padding: var(--space-md) var(--space-sm) var(--space-sm);
-  background: #fff;
+  background: var(--color-white);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
 }
@@ -1358,28 +1353,27 @@ ol {
   padding: 0.3rem 0.85rem;
   border-radius: var(--radius-pill);
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-white);
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
 }
 
 .doctor-card__name {
   font-size: var(--text-sm);
-  font-weight: var(--weight-medium); /* Figma: 450 */
+  font-weight: var(--weight-medium);
   color: var(--color-heading);
 }
 
 .doctor-card__desc {
   margin-top: var(--space-3xs);
   font-size: var(--text-xs);
-  color: var(--color-body); /* Figma: #43474E */
+  color: var(--color-body);
   line-height: var(--leading-normal);
 }
 
 /* Doctor strip is a free-scroll carousel (drag / trackpad / swipe) — no arrows,
    matching the Figma design. */
 
-/* ===== src/components/appointment/appointment.css ===== */
 /* ============================================================
    Appointment form ("Запишитесь на прием")
    ============================================================ */
@@ -1392,7 +1386,7 @@ ol {
       rgba(29, 29, 27, 0.15),
       var(--color-accent-soft)
     ),
-    image-set(url("/assets/images/form-bg.webp") type("image/webp"));
+    url("/assets/images/form-bg.webp");
   background-size: cover;
   background-position: center;
 }
@@ -1409,9 +1403,9 @@ ol {
 .appointment__title {
   text-align: center;
   font-size: var(--text-h3);
-  font-weight: var(--weight-semibold); /* Figma: 600 */
-  line-height: 1; /* Figma: 100% */
-  color: var(--color-body); /* Figma: #43474E */
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  color: var(--color-body);
   margin-bottom: var(--space-lg);
 }
 
@@ -1473,12 +1467,12 @@ select.field__control {
 
 .field__error {
   font-size: var(--text-xs);
-  color: #d92d20;
+  color: var(--color-danger);
   min-height: 1em;
 }
 
 .field__control[aria-invalid="true"] {
-  border-color: #d92d20;
+  border-color: var(--color-danger);
 }
 
 .appointment__submit {
@@ -1495,7 +1489,6 @@ select.field__control {
   }
 }
 
-/* ===== src/components/contacts/contacts.css ===== */
 /* ============================================================
    Contacts ("Наши контакты") — intro | branches+socials | map
    ============================================================ */
@@ -1531,7 +1524,7 @@ select.field__control {
 .branches {
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Figma: 16px между филиалами */
+  gap: 1rem;
 }
 
 /* Figma: адрес → телефон → ссылки, без разделителей, 16px между филиалами */
@@ -1543,7 +1536,7 @@ select.field__control {
 
 .branch__addr {
   font-size: var(--text-lg);
-  color: var(--color-body); /* Figma: #43474E */
+  color: var(--color-body);
 }
 
 .branch__phone {
@@ -1604,7 +1597,7 @@ select.field__control {
 .socials a:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: #fff;
+  color: var(--color-white);
   transform: translateY(-2px);
 }
 
@@ -1652,7 +1645,6 @@ select.field__control {
   }
 }
 
-/* ===== src/components/error404/error404.css ===== */
 /* ============================================================
    404 — страница не найдена (контент по центру между шапкой и футером)
    ============================================================ */
@@ -1661,7 +1653,7 @@ select.field__control {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: calc(84px + clamp(2rem, 1rem + 4vw, 4.5rem)) var(--container-pad)
+  padding: calc(var(--header-height) + clamp(2rem, 1rem + 4vw, 4.5rem)) var(--container-pad)
     clamp(2.5rem, 1.5rem + 4vw, 5rem);
   text-align: center;
 }
@@ -1681,7 +1673,7 @@ select.field__control {
 
 /* точная графика «404» из Figma (две «4» + стетоскоп), SVG-экспорт */
 .error404__graphic {
-  width: clamp(17rem, 12rem + 28vw, 34.5rem); /* Figma: ~552px */
+  width: clamp(17rem, 12rem + 28vw, 34.5rem);
   height: auto;
 }
 
@@ -1704,7 +1696,6 @@ select.field__control {
   margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
 }
 
-/* ===== src/components/about-page/about-page.css ===== */
 /* ============================================================
    Страница «О центре» — статистика, подход, атмосфера, награды
    ============================================================ */
@@ -1726,7 +1717,7 @@ select.field__control {
   align-items: center;
   gap: 0.6rem;
   padding: 0.55rem 1rem 0.55rem 0.6rem;
-  background: #fff;
+  background: var(--color-white);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-md);
 }
@@ -1747,7 +1738,7 @@ select.field__control {
 }
 .hero__stat-since {
   font-size: 0.75rem;
-  color: #6e6a64;
+  color: var(--color-muted-warm);
 }
 .hero__stat-value {
   font-size: 0.875rem;
@@ -1771,11 +1762,11 @@ select.field__control {
 }
 .about-stat + .about-stat {
   padding-left: clamp(1.5rem, 1rem + 3vw, 4rem);
-  border-left: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-accent);
 }
 .about-stat__num {
   font-size: var(--text-h3);
-  font-weight: var(--weight-semibold); /* Figma: 600 */
+  font-weight: var(--weight-semibold);
   line-height: 1;
   color: var(--color-heading);
 }
@@ -1791,7 +1782,7 @@ select.field__control {
   gap: clamp(1.5rem, 1rem + 3vw, 4rem);
   align-items: start;
   padding: clamp(1.75rem, 1.2rem + 3vw, 3.5rem);
-  background: rgba(113, 113, 122, 0.1); /* Figma: #71717A @ 10% */
+  background: rgba(113, 113, 122, 0.1);
   border-radius: var(--radius-lg); /* 24px */
 }
 .approach__title {
@@ -1850,7 +1841,7 @@ select.field__control {
 .award-card__title {
   margin-top: var(--space-sm);
   font-size: var(--text-sm);
-  font-weight: var(--weight-medium); /* Figma: 450 */
+  font-weight: var(--weight-medium);
   color: var(--color-heading);
 }
 .award-card__desc {
@@ -1869,7 +1860,7 @@ select.field__control {
     padding-left: 0;
     border-left: 0;
     padding-top: var(--space-md);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-accent);
   }
   .approach {
     grid-template-columns: 1fr;
@@ -1898,18 +1889,17 @@ select.field__control {
   }
 }
 
-/* ===== src/components/contacts-page/contacts-page.css ===== */
 /* ============================================================
    Страница «Контакты» — герой, филиалы + карта, способы связи
    ============================================================ */
 
 .contacts-hero {
-  padding: calc(84px + clamp(2rem, 1rem + 4vw, 4.5rem)) var(--container-pad)
+  padding: calc(var(--header-height) + clamp(2rem, 1rem + 4vw, 4.5rem)) var(--container-pad)
     clamp(1rem, 0.5rem + 2vw, 2rem);
   text-align: center;
 }
 .contacts-hero__title {
-  font-size: clamp(2.5rem, 1.4rem + 5vw, 4rem); /* Figma: 64px */
+  font-size: clamp(2.5rem, 1.4rem + 5vw, 4rem);
   font-weight: var(--weight-medium);
   line-height: 1;
   color: var(--color-heading);
@@ -1939,7 +1929,7 @@ select.field__control {
   direction: rtl;
   padding-left: 0.9rem;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-accent) #e8e0d2;
+  scrollbar-color: var(--color-accent) var(--color-scroll-track);
   cursor: grab;
   touch-action: pan-y;
 }
@@ -1950,7 +1940,7 @@ select.field__control {
   width: 5px;
 }
 .branches-col::-webkit-scrollbar-track {
-  background: #e8e0d2;
+  background: var(--color-scroll-track);
   border-radius: var(--radius-pill);
 }
 .branches-col::-webkit-scrollbar-thumb {
@@ -1969,10 +1959,10 @@ select.field__control {
 }
 .branch-card {
   flex-shrink: 0;
-  padding: 1.5rem; /* Figma: 24px */
-  background: #fff;
-  border: 1px solid rgba(67, 71, 78, 0.1); /* Figma: #43474E @ 10% */
-  border-radius: var(--radius-lg); /* Figma: 24px */
+  padding: 1.5rem;
+  background: var(--color-white);
+  border: 1px solid rgba(67, 71, 78, 0.1);
+  border-radius: var(--radius-lg);
 }
 .branch-card__name {
   font-size: 1.125rem; /* 18px */
@@ -2062,7 +2052,7 @@ select.field__control {
   gap: 0.6rem;
   height: 100%;
   padding: var(--space-md);
-  background: #fff;
+  background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: border-color var(--duration-fast) var(--ease-out),
@@ -2115,14 +2105,309 @@ select.field__control {
   }
 }
 
-/* ===== src/components/footer/footer.css ===== */
+/* ============================================================
+   Страница «Услуги» — сетка карточек услуг
+   ============================================================ */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 0.5rem + 1.5vw, 1.5rem);
+  list-style: none;
+}
+.service-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--color-white);
+  border-radius: var(--radius-lg); /* 24px */
+  transition: transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.service-card__media {
+  display: block;
+}
+.service-card__media img {
+  width: 100%;
+  aspect-ratio: 387 / 240;
+  object-fit: cover;
+  border-radius: var(--radius-lg); /* 24px */
+}
+.service-card__title {
+  margin-top: 1.5rem;
+  font-size: var(--text-h4); /* 24px */
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+.service-card__desc {
+  margin-top: 0.5rem;
+  flex-grow: 1;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-muted-warm);
+}
+.service-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+  transition: gap var(--duration-fast) var(--ease-out);
+}
+.service-card:hover .service-card__more {
+  gap: 0.7rem;
+}
+
+@media (max-width: 920px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Страница «Шаблон услуги» — крошки, цены, деталь, подготовка, симптомы
+   ============================================================ */
+
+/* хлебные крошки */
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-base);
+  color: var(--color-heading);
+}
+.breadcrumbs a {
+  color: var(--color-heading);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.breadcrumbs a:hover {
+  color: var(--color-accent);
+}
+.breadcrumbs span[aria-current] {
+  color: var(--color-muted);
+}
+
+.pricing__title {
+  font-size: var(--text-h2);
+  line-height: 1;
+  margin-bottom: var(--space-xl);
+}
+
+/* таблица цен */
+.price-table {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(67, 71, 78, 0.08);
+  overflow: hidden;
+}
+.price-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr 0.6fr;
+  gap: var(--space-md);
+  align-items: center;
+  padding: clamp(1rem, 0.7rem + 1vw, 1.5rem) clamp(1.25rem, 0.8rem + 1.5vw, 2rem);
+  border-bottom: 1px solid rgba(67, 71, 78, 0.08);
+}
+.price-row:last-child {
+  border-bottom: 0;
+}
+.price-row--head .price-row__name,
+.price-row--head .price-row__desc,
+.price-row--head .price-row__cost {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.price-row__name {
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--weight-medium);
+  color: var(--color-body);
+}
+.price-row__desc {
+  font-size: var(--text-base);
+  color: var(--color-muted-warm);
+}
+.price-row__cost {
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+}
+
+/* деталь услуги (ЭКГ) — переиспользует .hero, без min-height */
+.service-detail.hero {
+  padding-block: 0 var(--space-section);
+}
+.service-detail .hero__grid {
+  min-height: auto;
+}
+
+/* чек-лист «Как подготовиться?» (правая колонка карточки .approach) */
+.prep-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  list-style: none;
+}
+.prep-list li {
+  display: flex;
+  gap: 0.75rem;
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}
+.prep-list__ic {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 0.15em;
+  color: var(--color-accent);
+}
+
+/* «Когда назначают?» — сетка карточек-симптомов */
+.section-title--mb {
+  display: block;
+  margin-bottom: var(--space-xl);
+}
+.symptoms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 0.5rem + 1.5vw, 1.5rem);
+  list-style: none;
+}
+.symptom-card {
+  display: flex;
+  flex-direction: column;
+}
+.symptom-card__img {
+  width: 100%;
+  aspect-ratio: 322 / 300;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+.symptom-card__title {
+  margin-top: var(--space-sm);
+  font-size: var(--text-sm); /* 14px */
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+.symptom-card__desc {
+  margin-top: var(--space-3xs);
+  font-size: var(--text-xs); /* 12px */
+  line-height: var(--leading-normal);
+  color: var(--color-body);
+}
+
+@media (max-width: 920px) {
+  .price-row {
+    grid-template-columns: 1fr 0.5fr;
+    gap: 0.25rem var(--space-sm);
+  }
+  .price-row__desc {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+  .price-row--head {
+    display: none;
+  }
+  .symptoms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 540px) {
+  .symptoms-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Страница «Врачи» — фильтры, сетка врачей, партнёры
+   ============================================================ */
+
+.doctor-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: var(--space-xl);
+}
+.doctor-filter {
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(67, 71, 78, 0.1);
+  background: rgba(113, 113, 122, 0.1);
+  font-size: var(--text-sm);
+  color: var(--color-body);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.doctor-filter:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.doctor-filter--active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+  font-weight: var(--weight-medium);
+}
+
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.doctor-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: var(--space-2xs);
+  font-size: var(--text-xs); /* 12px */
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+  transition: gap var(--duration-fast) var(--ease-out);
+}
+.doctor-card:hover .doctor-card__more {
+  gap: 0.6rem;
+}
+
+@media (max-width: 920px) {
+  .doctors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 540px) {
+  .doctors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ============================================================
    Footer
    ============================================================ */
 
 .footer {
   background: var(--color-dark);
-  color: #ddddde;
+  color: var(--color-on-dark);
   padding-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
 }
 
@@ -2140,13 +2425,13 @@ select.field__control {
 .footer__desc {
   margin-top: var(--space-md);
   font-size: var(--text-base);
-  color: #ddddde;
+  color: var(--color-on-dark);
 }
 
 .footer__col-title {
   font-size: var(--text-lg);
   font-weight: var(--weight-medium);
-  color: #fff;
+  color: var(--color-white);
   margin-bottom: var(--space-md);
 }
 
@@ -2157,7 +2442,7 @@ select.field__control {
 }
 
 .footer__links a {
-  color: #ddddde;
+  color: var(--color-on-dark);
   transition: color var(--duration-fast) var(--ease-out);
 }
 
@@ -2174,12 +2459,12 @@ select.field__control {
 
 .footer__contacts .branch__addr {
   font-size: var(--text-base);
-  color: #ddddde;
+  color: var(--color-on-dark);
 }
 
 .footer__contacts .branch__phone {
   font-size: var(--text-base);
-  color: #ddddde;
+  color: var(--color-on-dark);
 }
 
 .footer__socials {
@@ -2194,7 +2479,7 @@ select.field__control {
   height: 44px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #fff;
+  color: var(--color-white);
   transition: background-color var(--duration-fast) var(--ease-out),
     border-color var(--duration-fast) var(--ease-out),
     transform var(--duration-fast) var(--ease-out);
@@ -2214,16 +2499,16 @@ select.field__control {
   padding-block: var(--space-md);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-size: var(--text-sm);
-  color: #ddddde;
+  color: var(--color-on-dark);
 }
 
 .footer__made {
   font-size: var(--text-xs);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .footer__made b {
-  color: #fff;
+  color: var(--color-white);
   font-weight: var(--weight-semibold);
 }
 
@@ -2246,7 +2531,6 @@ select.field__control {
   }
 }
 
-/* ===== src/components/widgets/widgets.css ===== */
 /* ============================================================
    Floating WhatsApp widget + success modal
    ============================================================ */
@@ -2262,7 +2546,7 @@ select.field__control {
   height: 60px;
   border-radius: var(--radius-pill);
   background: var(--color-whatsapp);
-  color: #fff;
+  color: var(--color-white);
   box-shadow: var(--shadow-md);
   transition: transform var(--duration-normal) var(--ease-out-expo),
     box-shadow var(--duration-fast) var(--ease-out);
@@ -2331,6 +2615,7 @@ select.field__control {
 }
 
 .modal__dialog {
+  position: relative;
   width: min(440px, 100%);
   background: var(--color-surface);
   border-radius: var(--radius-xl);
@@ -2389,4 +2674,120 @@ select.field__control {
 
 .modal__close:hover {
   background: var(--color-border);
+}
+
+/* ---- doctor modal ---- */
+.doctor-card[data-doctor-open] {
+  cursor: pointer;
+}
+.doctor-card[data-doctor-open]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.doctor-modal__dialog {
+  position: relative;
+  width: min(720px, 100%);
+  max-height: calc(100dvh - 2 * var(--space-md));
+  overflow-y: auto;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(16px) scale(0.98);
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+.modal.is-open .doctor-modal__dialog {
+  transform: none;
+}
+
+.doctor-modal__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1rem, 0.6rem + 1.6vw, 1.75rem);
+  align-items: center;
+  padding-right: 2.5rem; /* clear of the close button */
+}
+
+.doctor-modal__photo {
+  width: clamp(112px, 14vw, 168px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-cream);
+}
+
+.doctor-modal__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3xs);
+}
+
+.doctor-modal__tag {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+.doctor-modal__name {
+  margin-top: var(--space-2xs);
+  font-size: var(--text-h4);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.doctor-modal__exp {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.doctor-modal__summary {
+  margin-top: var(--space-2xs);
+  color: var(--color-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.doctor-modal__divider {
+  height: 1px;
+  margin: var(--space-md) 0;
+  background: var(--color-border);
+}
+
+.doctor-modal__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-2xs);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+.doctor-modal__label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.doctor-modal__bio {
+  color: var(--color-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+@media (max-width: 540px) {
+  .doctor-modal__head {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
 }

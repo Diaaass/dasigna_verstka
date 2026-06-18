@@ -28,8 +28,9 @@
     requestAnimationFrame(raf);
   }
 
+  const header = document.querySelector("[data-header]");
+
   /* ---------- Smooth in-page anchor navigation ---------- */
-  const headerEl = document.querySelector("[data-header]");
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
       const hash = link.getAttribute("href");
@@ -37,7 +38,7 @@
       const target = document.querySelector(hash);
       if (!target) return;
       e.preventDefault();
-      const offset = headerEl ? headerEl.offsetHeight + 12 : 0;
+      const offset = header ? header.offsetHeight + 12 : 0;
       if (lenis) {
         lenis.scrollTo(target, { offset: -offset });
       } else {
@@ -48,7 +49,6 @@
   });
 
   /* ---------- Header: shadow on scroll ---------- */
-  const header = document.querySelector("[data-header]");
   if (header) {
     const onScroll = () =>
       header.classList.toggle("is-scrolled", window.scrollY > 8);
@@ -110,7 +110,8 @@
     });
   }
 
-  // Populate mobile accordion panels by cloning desktop panel content (DRY)
+  // Mobile accordion reuses the desktop panel content instead of duplicating
+  // it in markup; panels are populated lazily on first open.
   function buildAccordion(tab) {
     const id = tab.dataset.serviceTab;
     const target = document.querySelector(
@@ -150,53 +151,186 @@
     selectService(serviceTabs[0].dataset.serviceTab);
   }
 
-  /* ---------- Appointment form ---------- */
+  /* ---------- Modals (shared overlay: success + doctor) ---------- */
   const form = document.querySelector("[data-appointment-form]");
   const modal = document.querySelector("[data-modal]");
 
-  function openModal() {
-    if (!modal) return;
-    modal.classList.add("is-open");
+  const FOCUSABLE =
+    'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  let modalReturnFocus = null;
+
+  const openModalEl = (el) => {
+    if (!el) return;
+    modalReturnFocus = document.activeElement;
+    el.classList.add("is-open");
     if (lenis) lenis.stop();
-  }
-  function closeModal() {
-    if (!modal) return;
-    modal.classList.remove("is-open");
+    // Defer focus until the dialog is rendered (it animates from visibility:hidden).
+    const focusTarget =
+      el.querySelector("[data-modal-close]") || el.querySelector(FOCUSABLE);
+    if (focusTarget) requestAnimationFrame(() => focusTarget.focus());
+  };
+  const closeModalEl = (el) => {
+    if (!el) return;
+    el.classList.remove("is-open");
     if (lenis) lenis.start();
-  }
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal || e.target.closest("[data-modal-close]"))
-        closeModal();
+    modalReturnFocus?.focus();
+    modalReturnFocus = null;
+  };
+
+  // Named helper used by the appointment form below.
+  const openModal = () => openModalEl(modal);
+
+  // Backdrop / close-button dismissal for every overlay on the page.
+  document.querySelectorAll(".modal").forEach((overlay) => {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay || e.target.closest("[data-modal-close]"))
+        closeModalEl(overlay);
     });
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape")
+      document.querySelectorAll(".modal.is-open").forEach(closeModalEl);
+  });
+
+  // Trap Tab focus inside the open modal.
+  window.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const open = document.querySelector(".modal.is-open");
+    if (!open) return;
+    const items = Array.from(open.querySelectorAll(FOCUSABLE)).filter(
+      (el) => el.offsetParent !== null
+    );
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  /* ---------- Doctor modal ---------- */
+  const doctorModal = document.querySelector("[data-doctor-modal]");
+  if (doctorModal) {
+    const slots = {
+      photo: doctorModal.querySelector("[data-dm-photo]"),
+      tag: doctorModal.querySelector("[data-dm-tag]"),
+      name: doctorModal.querySelector("[data-dm-name]"),
+      exp: doctorModal.querySelector("[data-dm-exp]"),
+      summary: doctorModal.querySelector("[data-dm-summary]"),
+      bio: doctorModal.querySelector("[data-dm-bio]"),
+    };
+
+    const fillFromCard = (card) => {
+      const img = card.querySelector(".doctor-card__img");
+      slots.photo.src = img ? img.getAttribute("src") : "";
+      slots.photo.alt = img ? img.getAttribute("alt") : "";
+      slots.tag.textContent =
+        card.querySelector(".doctor-card__tag")?.textContent.trim() || "";
+      slots.name.textContent =
+        card.querySelector(".doctor-card__name")?.textContent.trim() || "";
+      slots.exp.textContent = card.dataset.exp || "";
+      slots.summary.textContent = card.dataset.summary || "";
+      slots.bio.textContent = card.dataset.bio || "";
+    };
+
+    document.querySelectorAll("[data-doctor-open]").forEach((card) => {
+      const open = (e) => {
+        e.preventDefault();
+        fillFromCard(card);
+        openModalEl(doctorModal);
+      };
+      card.addEventListener("click", open);
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") open(e);
+      });
     });
   }
 
-  /* phone mask: +7 (XXX) XXX-XX-XX */
-  const phone = document.querySelector("[data-phone]");
-  if (phone) {
-    const format = (digits) => {
-      let d = digits.replace(/\D/g, "");
-      if (d.startsWith("8")) d = "7" + d.slice(1);
-      if (!d.startsWith("7")) d = "7" + d;
-      d = d.slice(0, 11);
-      const p = d.slice(1);
-      let out = "+7";
-      if (p.length) out += " (" + p.slice(0, 3);
-      if (p.length >= 3) out += ") " + p.slice(3, 6);
-      if (p.length >= 6) out += "-" + p.slice(6, 8);
-      if (p.length >= 8) out += "-" + p.slice(8, 10);
-      return out;
-    };
-    phone.addEventListener("input", () => {
-      phone.value = format(phone.value);
-    });
-    phone.addEventListener("focus", () => {
-      if (!phone.value) phone.value = "+7 (";
+  /* ---------- Doctors: filter by specialty ---------- */
+  const filterGroup = document.querySelector(".doctor-filters");
+  if (filterGroup) {
+    const buttons = Array.from(filterGroup.querySelectorAll(".doctor-filter"));
+    const cards = Array.from(
+      filterGroup.closest("section").querySelectorAll(".doctor-card")
+    );
+
+    filterGroup.addEventListener("click", (e) => {
+      const btn = e.target.closest(".doctor-filter");
+      if (!btn) return;
+      const specialty = btn.textContent.trim().toLowerCase();
+      const showAll = specialty.startsWith("все");
+
+      buttons.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle("doctor-filter--active", active);
+        b.setAttribute("aria-pressed", String(active));
+      });
+
+      cards.forEach((card) => {
+        const tag =
+          card.querySelector(".doctor-card__tag")?.textContent.trim().toLowerCase() ||
+          "";
+        card.hidden = !(showAll || tag === specialty);
+      });
     });
   }
+
+  /* ---------- Phone mask: +7 (___) ___ ____ ---------- */
+  const MATRIX = "+7 (___) ___ ____";
+
+  const maskPhone = function (event) {
+    const key = event.key;
+    const pos = this.selectionStart ?? this.value.length;
+
+    // Protect the static "+7 (" prefix from edits / deletes.
+    if (pos < 3 && event.type === "keydown") {
+      event.preventDefault();
+      return;
+    }
+
+    const def = MATRIX.replace(/\D/g, "");
+    let val = this.value.replace(/\D/g, "");
+    if (def.length >= val.length) val = def;
+
+    let i = 0;
+    let next = MATRIX.replace(/[_\d]/g, (a) =>
+      i < val.length ? val.charAt(i++) : a
+    );
+
+    // Trim the unfilled tail so the caret stays at the live slot.
+    i = next.indexOf("_");
+    if (i !== -1) {
+      if (i < 5) i = 3;
+      next = next.slice(0, i);
+    }
+
+    let reg = MATRIX.substring(0, this.value.length)
+      .replace(/_+/g, (a) => `\\d{1,${a.length}}`)
+      .replace(/[+()]/g, "\\$&");
+    reg = new RegExp(`^${reg}$`);
+
+    if (
+      !reg.test(this.value) ||
+      this.value.length < 5 ||
+      (key && key.length === 1 && /\d/.test(key))
+    ) {
+      this.value = next;
+    }
+
+    if (event.type === "blur" && this.value.length < 5) this.value = "";
+  };
+
+  const phoneInputs = document.querySelectorAll('input[type="tel"]');
+  phoneInputs.forEach((input) => {
+    input.addEventListener("input", maskPhone, false);
+    input.addEventListener("focus", maskPhone, false);
+    input.addEventListener("blur", maskPhone, false);
+    input.addEventListener("keydown", maskPhone, false);
+  });
 
   function setError(field, msg) {
     const control = field.querySelector(".field__control");
@@ -219,7 +353,8 @@
       } else setError(nameField, "");
 
       const phoneField = form.querySelector('[data-field="phone"]');
-      const digits = (phone ? phone.value : "").replace(/\D/g, "");
+      const phoneInput = phoneField.querySelector("input");
+      const digits = phoneInput.value.replace(/\D/g, "");
       if (digits.length < 11) {
         setError(phoneField, "Введите корректный номер");
         ok = false;
@@ -239,7 +374,7 @@
 
       // In production: POST to the booking endpoint / WordPress REST here.
       form.reset();
-      if (phone) phone.value = "";
+      phoneInput.value = "";
       openModal();
     });
   }
