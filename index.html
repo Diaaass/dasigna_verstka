@@ -38,8 +38,9 @@
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/vendor/lenis.css?v=31" />
-    <link rel="stylesheet" href="src/styles/main.css?v=31" />
+    <link rel="stylesheet" href="assets/vendor/lenis.css?v=54" />
+    <link rel="stylesheet" href="assets/vendor/swiper-bundle.min.css?v=54" />
+    <link rel="stylesheet" href="src/styles/main.css?v=54" />
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -74,7 +75,7 @@
               <img class="logo__img" src="assets/logo/logo-dark.svg" width="129" height="52" alt="Da.Signa — медицинский центр" />
             </a>
             <button class="nav__close" data-menu-close type="button" aria-label="Закрыть меню">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M24 8 8 24M8 8l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
 
@@ -129,7 +130,7 @@
             aria-expanded="false"
             aria-controls="primary-nav"
           >
-            <span></span>
+            <svg class="menu-toggle__icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M18.6667 16H5.33333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M26.6667 8H5.33334" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M26.6667 24H5.33334" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </div>
@@ -175,7 +176,7 @@
                   </text>
                 </svg>
                 <span class="spin-badge__disc" aria-hidden="true">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                  <img src="assets/icons/badge-arrow.svg" width="72" height="72" alt="" />
                 </span>
               </a>
             </div>
@@ -205,7 +206,7 @@
               Наши специалисты используют новейшие технологии для точной
               диагностики и эффективного лечения.
             </p>
-            <a class="btn about__btn" href="#services">
+            <a class="btn about__btn" href="about.html">
               Подробнее о центре
               <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
             </a>
@@ -230,7 +231,7 @@
           <ul class="advantages__grid">
             <li class="advantage reveal">
               <span class="advantage__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <img src="assets/icons/advantage-team.svg" width="40" height="40" alt="" />
               </span>
               <h3 class="advantage__title">Профессиональная команда</h3>
               <p class="advantage__text">
@@ -240,7 +241,7 @@
             </li>
             <li class="advantage reveal">
               <span class="advantage__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <img src="assets/icons/advantage-tech.svg" width="40" height="40" alt="" />
               </span>
               <h3 class="advantage__title">Современные технологии</h3>
               <p class="advantage__text">
@@ -250,7 +251,7 @@
             </li>
             <li class="advantage reveal">
               <span class="advantage__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <img src="assets/icons/advantage-care.svg" width="40" height="40" alt="" />
               </span>
               <h3 class="advantage__title">Индивидуальный подход</h3>
               <p class="advantage__text">
@@ -272,8 +273,6 @@
           <div class="services__layout reveal">
             <!-- Tab list (desktop) / accordion headers (mobile) -->
             <div class="services__list" role="tablist" aria-label="Услуги">
-              <!-- buttons + mobile accordion panels injected/styled per item -->
-              <!-- 1 -->
               <button class="services__tab" data-service-tab="s1" role="tab" aria-selected="true" aria-expanded="false">
                 Консультация врача
                 <svg class="services__tab-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -373,17 +372,17 @@
               <a class="spin-badge services__badge" href="#appointment" aria-label="Выбрать услугу">
                 <svg class="spin-badge__ring" viewBox="0 0 200 200" aria-hidden="true">
                   <defs>
-                    <path id="badge-arc-svc" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" />
+                    <path id="badge-arc-svc" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" />
                   </defs>
                   <text text-anchor="middle">
-                    <textPath href="#badge-arc-svc" startOffset="0%">выбрать</textPath>
-                    <textPath href="#badge-arc-svc" startOffset="25%">выбрать</textPath>
-                    <textPath href="#badge-arc-svc" startOffset="50%">выбрать</textPath>
-                    <textPath href="#badge-arc-svc" startOffset="75%">выбрать</textPath>
+                    <textPath href="#badge-arc-svc" startOffset="12.5%">выбрать</textPath>
+                    <textPath href="#badge-arc-svc" startOffset="37.5%">выбрать</textPath>
+                    <textPath href="#badge-arc-svc" startOffset="62.5%">выбрать</textPath>
+                    <textPath href="#badge-arc-svc" startOffset="87.5%">выбрать</textPath>
                   </text>
                 </svg>
                 <span class="spin-badge__disc" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                  <img src="assets/icons/badge-arrow.svg" width="72" height="72" alt="" />
                 </span>
               </a>
             </div>
@@ -403,56 +402,59 @@
             </p>
           </div>
 
-          <ul class="specialists__track" data-carousel-track data-lenis-prevent>
-            <li class="doctor-card reveal">
+          <div class="swiper specialists-swiper" data-specialists-swiper>
+            <div class="swiper-wrapper">
+            <div class="swiper-slide doctor-card">
               <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Калибаева Динара Бауыржановна" />
               <div class="doctor-card__body">
                 <span class="doctor-card__tag">Кардиолог</span>
                 <h3 class="doctor-card__name">Калибаева Динара Бауыржановна</h3>
                 <p class="doctor-card__desc">15 лет опыта в диагностике и лечении заболеваний сердца.</p>
               </div>
-            </li>
-            <li class="doctor-card reveal">
+            </div>
+            <div class="swiper-slide doctor-card">
               <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Иванов Сергей Петрович" />
               <div class="doctor-card__body">
                 <span class="doctor-card__tag">Невролог</span>
                 <h3 class="doctor-card__name">Иванов Сергей Петрович</h3>
                 <p class="doctor-card__desc">Специалист по лечению заболеваний центральной и периферической нервной системы.</p>
               </div>
-            </li>
-            <li class="doctor-card reveal">
+            </div>
+            <div class="swiper-slide doctor-card">
               <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Кузнецова Марина Александровна" />
               <div class="doctor-card__body">
                 <span class="doctor-card__tag">Эндокринолог</span>
                 <h3 class="doctor-card__name">Кузнецова Марина Александровна</h3>
                 <p class="doctor-card__desc">Эксперт в области диагностики и терапии заболеваний эндокринной системы.</p>
               </div>
-            </li>
-            <li class="doctor-card reveal">
+            </div>
+            <div class="swiper-slide doctor-card">
               <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Иванов Сергей Петрович" />
               <div class="doctor-card__body">
                 <span class="doctor-card__tag">Кардиолог</span>
                 <h3 class="doctor-card__name">Иванов Сергей Петрович</h3>
                 <p class="doctor-card__desc">Специалист по лечению заболеваний сердца и сосудистой системы с многолетним опытом.</p>
               </div>
-            </li>
-            <li class="doctor-card reveal">
+            </div>
+            <div class="swiper-slide doctor-card">
               <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Петрова Ольга Викторовна" />
               <div class="doctor-card__body">
                 <span class="doctor-card__tag">Невролог</span>
                 <h3 class="doctor-card__name">Петрова Ольга Викторовна</h3>
                 <p class="doctor-card__desc">Профессионал в диагностике и лечении неврологических расстройств и заболеваний мозга.</p>
               </div>
-            </li>
-            <li class="doctor-card reveal">
+            </div>
+            <div class="swiper-slide doctor-card">
               <img class="doctor-card__img" src="assets/images/doctor.webp" width="322" height="300" loading="lazy" alt="Смирнова Ольга Викторовна" />
               <div class="doctor-card__body">
                 <span class="doctor-card__tag">Педиатр</span>
                 <h3 class="doctor-card__name">Смирнова Ольга Викторовна</h3>
                 <p class="doctor-card__desc">Опыт работы с новорожденными и детьми младшего возраста более 10 лет.</p>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
+            <div class="swiper-pagination"></div>
+          </div>
         </div>
       </section>
 
@@ -506,7 +508,7 @@
           <div class="contacts__intro reveal">
             <h2 class="section-title" id="contacts-heading">Наши контакты</h2>
             <p>Выберите удобный филиал и свяжитесь с нами.</p>
-            <a class="link-arrow" href="#contacts">
+            <a class="link-arrow" href="contacts.html">
               Перейти в Контакты
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
@@ -543,9 +545,13 @@
           </div>
 
           <div class="contacts__map reveal">
-            <a href="https://2gis.kz/almaty" target="_blank" rel="noopener" aria-label="Открыть карту филиалов">
-              <img src="assets/images/map.webp" width="550" height="391" loading="lazy" alt="Карта расположения филиалов Da.Signa в Алматы" />
-            </a>
+            <iframe
+              class="contacts__map-frame"
+              title="Карта расположения филиалов Da.Signa в Алматы"
+              src="https://maps.google.com/maps?q=Almaty,Kazakhstan&z=11&hl=ru&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </section>
@@ -568,7 +574,7 @@
           <nav class="footer__nav" aria-label="Разделы">
             <h3 class="footer__col-title">Разделы</h3>
             <div class="footer__links">
-              <a href="about.html">О Центре</a>
+              <a href="about.html">О центре</a>
               <a href="services.html">Услуги</a>
               <a href="doctors.html">Врачи</a>
               <a href="contacts.html">Контакты</a>
@@ -632,7 +638,8 @@
       </div>
     </div>
 
-    <script src="assets/vendor/lenis.min.js?v=31" defer></script>
-    <script src="src/lib/main.js?v=31" defer></script>
+    <script src="assets/vendor/lenis.min.js?v=54" defer></script>
+    <script src="assets/vendor/swiper-bundle.min.js?v=54" defer></script>
+    <script src="src/lib/main.js?v=54" defer></script>
   </body>
 </html>

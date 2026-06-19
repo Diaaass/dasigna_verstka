@@ -225,6 +225,7 @@
     };
 
     const fillFromCard = (card) => {
+      if (Object.values(slots).some((el) => !el)) return;
       const img = card.querySelector(".doctor-card__img");
       slots.photo.src = img ? img.getAttribute("src") : "";
       slots.photo.alt = img ? img.getAttribute("alt") : "";
@@ -250,33 +251,69 @@
     });
   }
 
-  /* ---------- Doctors: filter by specialty ---------- */
+  /* ---------- Doctors: filter (desktop) + group by specialty (mobile) ---------- */
   const filterGroup = document.querySelector(".doctor-filters");
-  if (filterGroup) {
+  const grid = filterGroup?.closest("section")?.querySelector(".doctors-grid");
+  if (filterGroup && grid) {
     const buttons = Array.from(filterGroup.querySelectorAll(".doctor-filter"));
-    const cards = Array.from(
-      filterGroup.closest("section").querySelectorAll(".doctor-card")
-    );
+    const cards = Array.from(grid.querySelectorAll(".doctor-card"));
+    const catOf = (card) =>
+      card.querySelector(".doctor-card__tag")?.textContent.trim() || "—";
 
+    // Desktop: filter pills show/hide cards.
     filterGroup.addEventListener("click", (e) => {
       const btn = e.target.closest(".doctor-filter");
       if (!btn) return;
       const specialty = btn.textContent.trim().toLowerCase();
       const showAll = specialty.startsWith("все");
-
       buttons.forEach((b) => {
         const active = b === btn;
         b.classList.toggle("doctor-filter--active", active);
         b.setAttribute("aria-pressed", String(active));
       });
-
       cards.forEach((card) => {
-        const tag =
-          card.querySelector(".doctor-card__tag")?.textContent.trim().toLowerCase() ||
-          "";
-        card.hidden = !(showAll || tag === specialty);
+        card.hidden = !(showAll || catOf(card).toLowerCase() === specialty);
       });
     });
+
+    // Mobile: cards regrouped under specialty headings (Figma «Врачи моб»).
+    const groups = document.createElement("div");
+    groups.className = "doctors-cats";
+    const lists = new Map();
+    cards.forEach((card) => {
+      const cat = catOf(card);
+      if (!lists.has(cat)) {
+        const wrap = document.createElement("div");
+        wrap.className = "doctors-cat";
+        const h = document.createElement("h3");
+        h.className = "doctors-cat__title";
+        h.textContent = cat;
+        const ul = document.createElement("ul");
+        ul.className = "doctors-cat__list";
+        wrap.append(h, ul);
+        groups.appendChild(wrap);
+        lists.set(cat, ul);
+      }
+    });
+    grid.after(groups);
+
+    const mq = window.matchMedia("(max-width: 600px)");
+    const sync = () => {
+      const mobile = mq.matches;
+      if (mobile) {
+        cards.forEach((card) => {
+          card.hidden = false;
+          lists.get(catOf(card)).appendChild(card);
+        });
+      } else {
+        cards.forEach((card) => grid.appendChild(card));
+      }
+      filterGroup.hidden = mobile;
+      grid.hidden = mobile;
+      groups.hidden = !mobile;
+    };
+    sync();
+    mq.addEventListener("change", sync);
   }
 
   /* ---------- Phone mask: +7 (___) ___ ____ ---------- */
@@ -407,6 +444,27 @@
     branchesCol.addEventListener("pointerup", onUp);
     branchesCol.addEventListener("pointercancel", onUp);
     branchesCol.addEventListener("pointerleave", onUp);
+  }
+
+  /* ---------- Specialists carousel (Swiper) ---------- */
+  if (typeof Swiper !== "undefined") {
+    document.querySelectorAll("[data-specialists-swiper]").forEach((el) => {
+      new Swiper(el, {
+        slidesPerView: 1.15,
+        spaceBetween: 16,
+        grabCursor: true,
+        watchOverflow: true,
+        pagination: {
+          el: el.querySelector(".swiper-pagination"),
+          clickable: true,
+        },
+        breakpoints: {
+          600: { slidesPerView: 2, spaceBetween: 24 },
+          900: { slidesPerView: 3, spaceBetween: 24 },
+          1200: { slidesPerView: 4, spaceBetween: 24 },
+        },
+      });
+    });
   }
 
   /* ---------- Reveal on scroll ---------- */
