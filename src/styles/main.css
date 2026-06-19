@@ -2151,6 +2151,7 @@ select.field__control {
   color: var(--color-muted-warm);
 }
 .service-card__more {
+  align-self: flex-end; /* Figma: «Подробнее» в правом нижнем углу карточки */
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
