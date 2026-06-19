@@ -10,16 +10,6 @@ node_modules/
 .idea/
 *.swp
 
-# Claude / AI working files
-.claude/
-CLAUDE.md
-CONTEXT.md
-.cursor/
-.aider*
-
-# Dev reference renders (Figma exports for сверки)
-design/
-
 # Logs / temp
 *.log
 *.tmp
